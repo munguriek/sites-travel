@@ -27,5 +27,5 @@ if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) 
 
-# handler404 = 'accounts.views.error_404'
-# handler500 = 'accounts.views.error_500'
+handler404 = 'accounts.views.error_404'
+handler500 = 'accounts.views.error_500'
