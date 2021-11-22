@@ -1,34 +1,30 @@
+{% load static %}
 <!DOCTYPE html>
-<!-- 
-Template Name: Xpedia
-Version: 1.0.0
-
--->
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="zxx">
-<!--[endif]-->
+<!-- Template Name: Xpedia Version: 1.0.0 -->
+<html lang="eng">
 
 <head>
 	<meta charset="utf-8" />
-	<title>Xpedia</title>
+	<title>Sites Travel</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-	<meta name="description" content="Xpedia" />
-	<meta name="keywords" content="Xpedia" />
-	<meta name="author" content="" />
+	<meta name="description" content="Sites Travel Ltd is a bespoke travel and tours management agency based in Uganda" />
+	<meta name="keywords" content="tours, travel, travel industry, car hire, airport drops and pickups, air ticketing,
+	 holiday, Uganda Travel Bureau" />
+	<meta name="author" content="autonomous codestore" />
 	<meta name="MobileOptimized" content="320" />
+	<!-- icons -->
+	<script src="https://kit.fontawesome.com/f964d15bb5.js" crossorigin="anonymous"></script>
 	<!--Template style -->
-	<link rel="stylesheet" type="text/css" href="css/xpedia.css" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/xpedia.css' %}" />
 	<!--favicon-->
-	<link rel="shortcut icon" type="image/png" href="images/fevicon.png" />
+	<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" />
 </head>
 
 <body>
 	<!-- preloader Start -->
 	<div id="preloader">
 		<div id="status">
-			<img src="images/loader.gif" id="preloader_image" alt="loader">
+			<img src="{% static 'images/loader.gif' %}" id="preloader_image" alt="loader">
 		</div>
 	</div>
 	<div class="serach-header">
@@ -45,35 +41,28 @@ Version: 1.0.0
 	<div class="x_top_header_wrapper float_left">
 		<div class="container">
 			<div class="x_top_header_left_side_wrapper float_left">
-				<p>Call Us : 0814 251 152</p>
+				<p>Call Us : <a class="text-white" href="tel:+256 414 347 443">+256 414 347 443</a></p>
 			</div>
 			<div class="x_top_header_right_side_wrapper float_left">
 				<div class="x_top_header_social_icon_wrapper">
 					<ul>
-						<li><a href="#"><i class="fa fa-facebook-square"></i></a>
+						<li><a href="https://web.facebook.com/sitestravelLtd"><i class="fa fa-facebook-square"></i></a>
 						</li>
-						<li><a href="#"><i class="fa fa-twitter-square"></i></a>
+						<li><a href="https://twitter.com/Sitestravelug"><i class="fa fa-twitter-square"></i></a>
 						</li>
-						<li><a href="#"><i class="fa fa-instagram"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-linkedin-square"></i></a>
+						<!-- <li><a href="#"><i class="fa fa-instagram"></i></a>
+						</li> -->
+						<li><a href="https://www.youtube.com/channel/UCEaQBrJr7kznLwBnEf8JoYw"><i class="fa fa-youtube"></i></a>
 						</li>
 					</ul>
 				</div>
 				<div class="x_top_header_all_select_box_wrapper">
 					<ul>
-						<li class="language">
-							<select class="myselect">
-								<option>EN</option>
-								<option>RO</option>
-								<option>IT</option>
-							</select>	<i class="fa fa-globe"></i>
-						</li>
 						<li class="usd">
 							<select class="myselect">
-								<option>USD</option>
+								<option>UGX</option>
 								<option>EUR</option>
-								<option>CAD</option>
+								<option>EUR</option>
 							</select>	<i class="fa fa-money"></i>
 						</li>
 						<li class="login">	<a href="login.html"><i class="fa fa-power-off"></i> &nbsp;&nbsp;login</a>
@@ -97,28 +86,17 @@ Version: 1.0.0
 				<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
 					<div class="hs_logo_wrapper d-none d-sm-none d-xs-none d-md-block">
 						<a href="index.html">
-							<img src="images/logo.png" class="img-responsive" alt="logo" title="Logo" />
+							<img src="{% static 'images/logo.png' %}" height="50" class="img-responsive" alt="logo" title="Logo" />
 						</a>
 					</div>
 				</div>
 				<div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
 					<div class="hs_navi_cart_wrapper  d-none d-sm-none d-xs-none d-md-block d-lg-block d-xl-block">
-						<div class="dropdown-wrapper menu-button menu_button_end"> <a class="menu-button" href="#"><i class="flaticon-shopping-cart"></i><span>3</span></a>
+						<div class="dropdown-wrapper menu-button menu_button_end"> <a class="menu-button" href="#"><i class="fa fa-envelope"></i><span>3</span></a>
 							<div class="drop-menu">
 								<div class="cc_cart_wrapper1">
 									<div class="cc_cart_img_wrapper">
-										<img src="images/cart_img.jpg" alt="cart_img" />
-									</div>
-									<div class="cc_cart_cont_wrapper">
-										<h4><a href="#">Car</a></h4>
-										<p>Quantity : 2 × $45</p>
-										<h5>$90</h5>
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-									</div>
-								</div>
-								<div class="cc_cart_wrapper1 cc_cart_wrapper2">
-									<div class="cc_cart_img_wrapper">
-										<img src="images/cart_img.jpg" alt="cart_img" />
+										<img src="{% static 'images/cart_img.jpg' %}" alt="cart_img" />
 									</div>
 									<div class="cc_cart_cont_wrapper">
 										<h4><a href="#">Car</a></h4>
@@ -129,7 +107,7 @@ Version: 1.0.0
 								</div>
 								<div class="cc_cart_wrapper1">
 									<div class="cc_cart_img_wrapper">
-										<img src="images/cart_img.jpg" alt="cart_img" />
+										<img src="{% static 'images/cart_img.jpg' %}" alt="cart_img" />
 									</div>
 									<div class="cc_cart_cont_wrapper">
 										<h4><a href="#">Car</a></h4>
@@ -153,7 +131,7 @@ Version: 1.0.0
 								</div>
 							</li>
 							<li>
-								<div class="dropdown-wrapper menu-button"> <a class="menu-button" href="#">Car</a>
+								<div class="dropdown-wrapper menu-button"> <a class="menu-button" href="#">Explore</a>
 									<div class="drop-menu"> <a class="menu-button" href="car_accessories.html">Car-Accessories</a>
 										<a class="menu-button" href="car_booking.html">Car-Booking</a>
 										<a class="menu-button" href="car_booking_done.html">Car-Booking-Done</a>
@@ -163,11 +141,11 @@ Version: 1.0.0
 									</div>
 								</div>
 							</li>
-							<li> <a class="menu-button single_menu" href="about.html">About</a>
+							<li> <a class="menu-button single_menu" href="about.html">Ticketing</a>
 							</li>
-							<li> <a class="menu-button single_menu" href="team.html">Out Team </a>
+							<li> <a class="menu-button single_menu" href="team.html">Car Hire </a>
 							</li>
-							<li> <a class="menu-button single_menu" href="services.html">services </a>
+							<li> <a class="menu-button single_menu" href="services.html">Gallery </a>
 							</li>
 							<li>
 								<div class="dropdown-wrapper menu-button"> <a class="menu-button" href="#">Blog</a>
@@ -176,7 +154,7 @@ Version: 1.0.0
 									</div>
 								</div>
 							</li>
-							<li> <a class="menu-button single_menu" href="contact.html">Contact </a>
+							<li> <a class="menu-button single_menu" href="services.html">Contact Us </a>
 							</li>
 						</ul>
 					</nav>
@@ -211,20 +189,6 @@ Version: 1.0.0
 																	" />
 													</g>
 												</g>
-												<g></g>
-												<g></g>
-												<g></g>
-												<g></g>
-												<g></g>
-												<g></g>
-												<g></g>
-												<g></g>
-												<g></g>
-												<g></g>
-												<g></g>
-												<g></g>
-												<g></g>
-												<g></g>
 												<g></g>
 											</svg>
 										</a>
@@ -316,14 +280,13 @@ Version: 1.0.0
 							<div class="row">
 								<div class="col-xl-7 col-lg-6 col-md-12 col-sm-12 col-12">
 									<div class="content">
-										<h2 data-animation="animated fadeInLeft">CHEAP CAR RENTAL IN<br>
-your desired destination</h2>
+										<h2 data-animation="animated fadeInLeft">exceptional tours & travel services </h2>
 										<p data-animation="animated bounceInUp">One of our top priorities is to adjust each package we offer to our
-											<br>customer’s exact needs. Rental Cars / Bike / Jeeps <span>Starting @ $3 / Hrs</span>
+											<br>customer’s exact needs such as Rental Cars. 
 										</p>
 										<div class="hs_effect_btn">
 											<ul>
-												<li data-animation="animated flipInX"><a href="#">about us<i class="fa fa-arrow-right"></i></a>
+												<li data-animation="animated flipInX"><a href="#">Explore<i class="fa fa-arrow-right"></i></a>
 												</li>
 												<li data-animation="animated flipInX"><a href="#">contact<i class="fa fa-arrow-right"></i></a>
 												</li>
@@ -338,19 +301,19 @@ your desired destination</h2>
 											<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 												<div class="x_slider_form_main_wrapper float_left" data-animation="animated fadeIn">
 													<div class="x_slider_form_heading_wrapper float_left">
-														<h3>Let’s find your perfect car</h3>
+														<h3>The World is Yours</h3>
 													</div>
 													<div class="row">
 														<div class="col-md-12">
 															<div class="x_slider_form_input_wrapper float_left">
 																<h3>Pick-up Location</h3>
-																<input type="text" placeholder="City, Airport, Station, etc.">
+																<input type="text" placeholder="City, Airport, etc.">
 															</div>
 														</div>
 														<div class="col-md-12">
 															<div class="x_slider_form_input_wrapper float_left">
 																<h3>Drop-off Location</h3>
-																<input type="text" placeholder="City, Airport, Station, etc.">
+																<input type="text" placeholder="City, Airport, etc.">
 															</div>
 														</div>
 														<div class="col-md-6">
@@ -446,7 +409,7 @@ your desired destination</h2>
 								<div class="col-xl-7 col-lg-6 col-md-12 col-sm-12 col-12">
 									<div class="content">
 										<h2 data-animation="animated fadeInLeft">CHEAP CAR RENTAL IN<br>
-your desired destination</h2>
+											your desired destination</h2>
 										<p data-animation="animated bounceInUp">One of our top priorities is to adjust each package we offer to our
 											<br>customer’s exact needs. Rental Cars / Bike / Jeeps <span>Starting @ $3 / Hrs</span>
 										</p>
@@ -575,7 +538,7 @@ your desired destination</h2>
 								<div class="col-xl-7 col-lg-6 col-md-12 col-sm-12 col-12">
 									<div class="content">
 										<h2 data-animation="animated fadeInLeft">CHEAP CAR RENTAL IN<br>
-your desired destination</h2>
+											your desired destination</h2>
 										<p data-animation="animated bounceInUp">One of our top priorities is to adjust each package we offer to our
 											<br>customer’s exact needs. Rental Cars / Bike / Jeeps <span>Starting @ $3 / Hrs</span>
 										</p>
@@ -816,34 +779,179 @@ your desired destination</h2>
 	</div>
 	<!-- xs Slider bottom title Start -->
 	<div class="x_slider_bottom_title_main_wrapper">
-		<div class="x_slider_bottom_box_wrapper">	<i class="flaticon-magnifying-glass"></i>
-			<h3><a href="#">24 / 7 CAR SUPPORT</a></h3>
-			<p>Proin gravida nibh vel velit auctor
-				<br>aliquet. Aenean sollicitudin, lorem
-				<br>quis bibendum auctor.</p>
+		<div class="x_slider_bottom_box_wrapper">	<i class="fa-solid fa-suitcase-rolling"></i>
+			<h3><a href="#">Trips & Safaris</a></h3>
+			<p>Create a group or custom trip today and let us take care of the trip details</p>
 		</div>
-		<div class="x_slider_bottom_box_wrapper">	<i class="flaticon-world"></i>
-			<h3><a href="#">LOTS OF LOCATION</a></h3>
-			<p>Proin gravida nibh vel velit auctor
-				<br>aliquet. Aenean sollicitudin, lorem
-				<br>quis bibendum auctor.</p>
-		</div>
-		<div class="x_slider_bottom_box_wrapper">	<i class="flaticon-checklist"></i>
-			<h3><a href="#">RESERVATION ANYTIME</a></h3>
-			<p>Proin gravida nibh vel velit auctor
-				<br>aliquet. Aenean sollicitudin, lorem
-				<br>quis bibendum auctor.</p>
+		<div class="x_slider_bottom_box_wrapper">	<i class="fa-solid fa-plane-arrival"></i>
+			<h3><a href="#">Flight Ticketing </a></h3>
+			<p>We over flight booking arrangements</p>
 		</div>
 		<div class="x_slider_bottom_box_wrapper">	<i class="flaticon-car-trip"></i>
-			<h3><a href="#">Rentals Cars</a></h3>
-			<p>Proin gravida nibh vel velit auctor
-				<br>aliquet. Aenean sollicitudin, lorem
-				<br>quis bibendum auctor.</p>
+			<h3><a href="#">Car Hire</a></h3>
+			<p>Select & hire from the fleet of cars in their different categories.</p>
+		</div>
+		<div class="x_slider_bottom_box_wrapper">	<i class="fa-solid fa-blog"></i>
+			<h3><a href="#">Blog</a></h3>
+			<p>We have put down pieces of information about to share with wildlife lovers .</p>
 		</div>
 	</div>
-	<!-- xs Slider bottom title End -->
-	<!-- xs offer car tabs Start -->
-	<div class="x_offer_car_main_wrapper float_left padding_tb_100">
+
+		<!-- About us Start -->
+		<div class="x_why_main_wrapper">
+			<div class="x_why_img_overlay"></div>
+			<div class="container">
+				<div class="x_why_left_main_wrapper">
+					<img src="{% static 'images/w1.png' %}" alt="car_img">
+				</div>
+				<div class="x_why_right_main_wrapper">
+					<h3>About Us</h3>
+					<p>Sites Travel Ltd is a bespoke travel and tours management agency based in Uganda. 
+						We are a locally registered travel agency, certified by ATA, IATA and a member of Uganda Travel Bureau. 
+						We pride ourselves in more than 15 years of experience and expertise in the travel industry and 
+						our specialty is that point in life where you don’t know what to do next on your travel plans.
+						<br><br> <br>
+						We offer an exceptional high level of service and are committed to providing prompt, 
+						knowledgeable, thorough and friendly support to our customers. <br> <br>
+
+						We are the leaders in the provision of world class and competitive services in car hire, 
+						airport drops and pickups, air ticketing to all world destinations, travel advice on classes 
+						and preferred airlines, and dream holidays’ planning. <br><br>
+
+						Our prime location in the heart of Kampala City, Uganda, at the Kampala Serena Conference 
+						Centre is both convenient, relaxing and easy to get to. Come and relax in our luxurious offices 
+						as we handle your travel, car hire or holiday requests, or just give us a call.
+					</p>
+					<ul>
+						<li><a href="#">read more <i class="fa fa-arrow-right"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- About us End -->
+
+		<!-- xs offer car tabs Start -->
+		<div class="x_partner_main_wrapper float_left padding_tb_100">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="x_offer_car_heading_wrapper float_left">
+							<h4>Partners</h4>
+							<h3>Partners</h3>
+							<p>Some of the brands we've worked with.</p>
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="wrap-album-slider">
+							<ul class="album-slider">
+								<li class="album-slider__item">
+									<figure class="album">
+										<img src="{% static 'images/partners/assoc.png' %}" alt="img">
+									</figure>
+								</li>
+								<li class="album-slider__item">
+									<figure class="album">
+										<img src="{% static 'images/partners/eatp.png' %}" alt="img">
+									</figure>
+								</li>
+								<li class="album-slider__item">
+									<figure class="album">
+										<img src="{% static 'images/partners/iata.png' %}" alt="img">
+									</figure>
+								</li>
+								<li class="album-slider__item">
+									<figure class="album">
+										<img src="{% static 'images/partners/safari.jpg' %}" alt="img">
+									</figure>
+								</li>
+								<li class="album-slider__item">
+									<figure class="album">
+										<img src="{% static 'images/partners/ugata.png' %}" alt="img">
+									</figure>
+								</li>
+								<li class="album-slider__item">
+									<figure class="album">
+										<img src="{% static 'images/partners/uta.png' %}" alt="img">
+									</figure>
+								</li>
+								<li class="album-slider__item">
+									<figure class="album">
+										<img src="{% static 'images/partners/utb.png' %}" alt="img">
+									</figure>
+								</li>
+								<li class="album-slider__item">
+									<figure class="album">
+										<img src="{% static 'images/partners/uwa.jpeg' %}" alt="img">
+									</figure>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- partners end -->
+
+		<!-- Blogs Start -->
+		<!-- <div class="btc_team_main_wrapper">
+			<div class="btc_team_img_overlay"></div>
+			<div class="container">
+				<div class="btc_team_left_wrapper">
+					<h3>Blogs </h3>
+					<p>Explore a different way to travel. This isot as hop's version of Lorem Ipsum. oin gra nibh vel velit auctor aliquet. nean sollicin, lorem quis.</p>
+				</div>
+				<div class="btc_team_right_wrapper">
+					<div class="btc_team_slider_wrapper">
+						<div class="owl-carousel owl-theme">
+							<div class="item">
+								<div class="btc_team_slider_cont_main_wrapper">
+									<div class="btc_team_img_wrapper">
+										<img src="{% static 'images/t1.jpg' %}" alt="team_img1">
+										<div class="x_team_label_wrapper">
+											<p>40% OFF</p>
+										</div>
+									</div>
+									<div class="btc_team_img_cont_wrapper">
+										<h4><a href="#">Title</a></h4>
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="btc_team_slider_cont_main_wrapper">
+									<div class="btc_team_img_wrapper">
+										<img src="{% static 'images/t2.jpg' %}" alt="team_img1">
+										<div class="x_team_label_wrapper">
+											<p>40% OFF</p>
+										</div>
+									</div>
+									<div class="btc_team_img_cont_wrapper">
+										<h4><a href="#">Title</a></h4>
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="btc_team_slider_cont_main_wrapper">
+									<div class="btc_team_img_wrapper">
+										<img src="{% static 'images/t3.jpg' %}" alt="team_img1">
+										<div class="x_team_label_wrapper">
+											<p>40% OFF</p>
+										</div>
+									</div>
+									<div class="btc_team_img_cont_wrapper">
+										<h4><a href="#">Title</a></h4>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+		<!-- Blogs End -->
+
+	<!--  Car tabs Start -->
+	<!-- <div class="x_offer_car_main_wrapper float_left padding_tb_100">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -2205,67 +2313,11 @@ your desired destination</h2>
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- xs offer car tabs End -->
-	<!-- btc team Wrapper Start -->
-	<div class="btc_team_main_wrapper">
-		<div class="btc_team_img_overlay"></div>
-		<div class="container">
-			<div class="btc_team_left_wrapper">
-				<h3>Featured <br>
-Destinations</h3>
-				<p>Explore a different way to travel. This isot as hop's version of Lorem Ipsum. oin gra nibh vel velit auctor aliquet. nean sollicin, lorem quis.</p>
-			</div>
-			<div class="btc_team_right_wrapper">
-				<div class="btc_team_slider_wrapper">
-					<div class="owl-carousel owl-theme">
-						<div class="item">
-							<div class="btc_team_slider_cont_main_wrapper">
-								<div class="btc_team_img_wrapper">
-									<img src="images/t1.jpg" alt="team_img1">
-									<div class="x_team_label_wrapper">
-										<p>40% OFF</p>
-									</div>
-								</div>
-								<div class="btc_team_img_cont_wrapper">
-									<h4><a href="#">Paris, France</a></h4>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="btc_team_slider_cont_main_wrapper">
-								<div class="btc_team_img_wrapper">
-									<img src="images/t2.jpg" alt="team_img1">
-									<div class="x_team_label_wrapper">
-										<p>40% OFF</p>
-									</div>
-								</div>
-								<div class="btc_team_img_cont_wrapper">
-									<h4><a href="#">los Angeles, usa</a></h4>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="btc_team_slider_cont_main_wrapper">
-								<div class="btc_team_img_wrapper">
-									<img src="images/t3.jpg" alt="team_img1">
-									<div class="x_team_label_wrapper">
-										<p>40% OFF</p>
-									</div>
-								</div>
-								<div class="btc_team_img_cont_wrapper">
-									<h4><a href="#">Agra, india</a></h4>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- btc team Wrapper End -->
-	<!-- x counter Wrapper Start -->
-	<div class="x_counter_main_wrapper">
+
+	<!-- How it works Start -->
+	<!-- <div class="x_counter_main_wrapper">
 		<div class="x_counter_img_overlay"></div>
 		<div class="container">
 			<div class="row">
@@ -2311,10 +2363,11 @@ Destinations</h3>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- x counter Wrapper End -->
-	<!-- x booking Wrapper Start -->
-	<div class="x_booking_main_wrapper float_left">
+	</div> -->
+	<!-- How it works End -->
+
+	<!-- booking Start -->
+	<!-- <div class="x_booking_main_wrapper float_left">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3">
@@ -2338,10 +2391,11 @@ Destinations</h3>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- x booking Wrapper End -->
-	<!-- xs offer car tabs Start -->
-	<div class="x_offer_car_main_wrapper float_left padding_tb_100">
+	</div> -->
+	<!-- booking End -->
+
+	<!-- Testimonials Start -->
+	<!-- <div class="x_offer_car_main_wrapper float_left padding_tb_100">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -2357,11 +2411,9 @@ Destinations</h3>
 						<div class="owl-carousel screen nplr screen-loop">
 							<div>
 								<div class="card  valign-wrapper">
-									<!-- Client's image -->
 									<div class="card-image">
 										<img src="images/client_1.jpg" alt="img">
 									</div>
-									<!-- /Client's image -->
 									<div class="card-content center-align valign">
 										<div class="testi_slide_star">
 											<i class="fa fa-star"></i>
@@ -2370,23 +2422,17 @@ Destinations</h3>
 											<i class="fa fa-star-o"></i>
 											<i class="fa fa-star-o"></i>
 										</div>
-										<!-- Client's Feedback -->
 										<p>“ I don't always clap, but when I do, it's because of Sella. We can't understand how we've been living without Sella. ”</p>
-										<!-- /Client's Feedback -->
-										<!-- Client's Name -->
 										<p class="card-title">Irene Marita <span>Support Manager @ Echo</span>
 										</p>
-										<!-- /Client's Name -->
 									</div>
 								</div>
 							</div>
 							<div>
 								<div class="card  valign-wrapper">
-									<!-- Client's image -->
 									<div class="card-image">
 										<img src="images/client_2.jpg" alt="img">
 									</div>
-									<!-- /Client's image -->
 									<div class="card-content center-align valign">
 										<div class="testi_slide_star">
 											<i class="fa fa-star"></i>
@@ -2395,23 +2441,17 @@ Destinations</h3>
 											<i class="fa fa-star-o"></i>
 											<i class="fa fa-star-o"></i>
 										</div>
-										<!-- Client's Feedback -->
 										<p>“ I don't always clap, but when I do, it's because of Sella. We can't understand how we've been living without Sella. ”</p>
-										<!-- /Client's Feedback -->
-										<!-- Client's Name -->
 										<p class="card-title">Irene Marita <span>Support Manager @ Echo</span>
 										</p>
-										<!-- /Client's Name -->
 									</div>
 								</div>
 							</div>
 							<div>
 								<div class="card  valign-wrapper">
-									<!-- Client's image -->
 									<div class="card-image">
 										<img src="images/client_3.jpg" alt="img">
 									</div>
-									<!-- /Client's image -->
 									<div class="card-content center-align valign">
 									<div class="testi_slide_star">
 											<i class="fa fa-star"></i>
@@ -2420,23 +2460,17 @@ Destinations</h3>
 											<i class="fa fa-star-o"></i>
 											<i class="fa fa-star-o"></i>
 										</div>
-										<!-- Client's Feedback -->
 										<p>“ I don't always clap, but when I do, it's because of Sella. We can't understand how we've been living without Sella. ”</p>
-										<!-- /Client's Feedback -->
-										<!-- Client's Name -->
 										<p class="card-title">Irene Marita <span>Support Manager @ Echo</span>
 										</p>
-										<!-- /Client's Name -->
 									</div>
 								</div>
 							</div>
 							<div>
 								<div class="card  valign-wrapper">
-									<!-- Client's image -->
 									<div class="card-image">
 										<img src="images/client_4.jpg" alt="img">
 									</div>
-									<!-- /Client's image -->
 									<div class="card-content center-align valign">
 									<div class="testi_slide_star">
 											<i class="fa fa-star"></i>
@@ -2445,13 +2479,9 @@ Destinations</h3>
 											<i class="fa fa-star-o"></i>
 											<i class="fa fa-star-o"></i>
 										</div>
-										<!-- Client's Feedback -->
 										<p>“ I don't always clap, but when I do, it's because of Sella. We can't understand how we've been living without Sella. ”</p>
-										<!-- /Client's Feedback -->
-										<!-- Client's Name -->
 										<p class="card-title">Irene Marita <span>Support Manager @ Echo</span>
 										</p>
-										<!-- /Client's Name -->
 									</div>
 								</div>
 							</div>
@@ -2460,34 +2490,16 @@ Destinations</h3>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- btc team Wrapper Start -->
-	<div class="x_why_main_wrapper">
-		<div class="x_why_img_overlay"></div>
-		<div class="container">
-			<div class="x_why_left_main_wrapper">
-				<img src="images/w1.png" alt="car_img">
-			</div>
-			<div class="x_why_right_main_wrapper">
-				<h3>Why Choose Us ?</h3>
-				<p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, rem a quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Dssed odio sit amet nibh vulputate cursus a sit amt mauris. Morbi accumsan ipsum velit.
-					<br>
-					<br>This is Photoshop's version of Lorem Ipsum. Proin gravida n vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum tor. This is Photoshop's version of Lorem Ipsum.</p>
-				<ul>
-					<li><a href="#">read more <i class="fa fa-arrow-right"></i></a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- btc team Wrapper End -->
+	</div> -->
+	<!-- Testimonials end  -->
+
 	<!-- xs offer car tabs Start -->
 	<div class="x_ln_car_main_wrapper float_left padding_tb_100">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="x_ln_car_heading_wrapper float_left">
-						<h3>Latest cars</h3>
+						<h3>Latest Blogs</h3>
 					</div>
 				</div>
 				<div class="col-md-12">
@@ -2496,7 +2508,7 @@ Destinations</h3>
 							<div class="item">
 								<div class="btc_team_slider_cont_main_wrapper">
 									<div class="btc_ln_img_wrapper float_left">
-										<img src="images/ln1.jpg" alt="team_img1">
+										<img src="{% static 'images/ln1.jpg' %}" alt="team_img1">
 									</div>
 									<div class="btc_ln_img_cont_wrapper float_left">
 										<h4><a href="#">Autoweek in review: Everything you missed Sept. 11-15</a></h4>
@@ -2513,7 +2525,7 @@ Destinations</h3>
 							<div class="item">
 								<div class="btc_team_slider_cont_main_wrapper">
 									<div class="btc_ln_img_wrapper float_left">
-										<img src="images/ln2.jpg" alt="team_img1">
+										<img src="{% static 'images/ln2.jpg' %}" alt="team_img1">
 									</div>
 									<div class="btc_ln_img_cont_wrapper float_left">
 										<h4><a href="#">Rakish Tokyo concept signals hope for Mitsubishi's lineup</a></h4>
@@ -2530,7 +2542,7 @@ Destinations</h3>
 							<div class="item">
 								<div class="btc_team_slider_cont_main_wrapper">
 									<div class="btc_ln_img_wrapper float_left">
-										<img src="images/ln3.jpg" alt="team_img1">
+										<img src="{% static 'images/ln3.jpg' %}" alt="team_img1">
 									</div>
 									<div class="btc_ln_img_cont_wrapper float_left">
 										<h4><a href="#">Dinan BMW S2 M4 first drive: Not for everyone's lineup</a></h4>
@@ -2551,85 +2563,9 @@ Destinations</h3>
 		</div>
 	</div>
 	<!--js Start-->
-	<!-- xs offer car tabs Start -->
-	<div class="x_partner_main_wrapper float_left padding_tb_100">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="x_offer_car_heading_wrapper float_left">
-						<h4>Our Cars Partners</h4>
-						<h3>brands in fleet</h3>
-						<p>Morbi mollis vestibulum sollicitudin. Nunc in eros a justo facilisis rutrum. Aenean id ullamcorper libero
-							<br>Vestibulum imperdiet nibh vel magna lacinia commodo ultricies,</p>
-					</div>
-				</div>
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div class="wrap-album-slider">
-						<ul class="album-slider">
-							<li class="album-slider__item">
-								<figure class="album">
-									<img src="images/prt1.png" alt="img">
-								</figure>
-							</li>
-							<li class="album-slider__item">
-								<figure class="album">
-									<img src="images/prt2.png" alt="img">
-								</figure>
-							</li>
-							<li class="album-slider__item">
-								<figure class="album">
-									<img src="images/prt3.png" alt="img">
-								</figure>
-							</li>
-							<li class="album-slider__item">
-								<figure class="album">
-									<img src="images/prt4.png" alt="img">
-								</figure>
-							</li>
-							<li class="album-slider__item">
-								<figure class="album">
-									<img src="images/prt5.png" alt="img">
-								</figure>
-							</li>
-							<li class="album-slider__item">
-								<figure class="album">
-									<img src="images/prt6.png" alt="img">
-								</figure>
-							</li>
-							<li class="album-slider__item">
-								<figure class="album">
-									<img src="images/prt1.png" alt="img">
-								</figure>
-							</li>
-							<li class="album-slider__item">
-								<figure class="album">
-									<img src="images/prt2.png" alt="img">
-								</figure>
-							</li>
-							<li class="album-slider__item">
-								<figure class="album">
-									<img src="images/prt3.png" alt="img">
-								</figure>
-							</li>
-							<li class="album-slider__item">
-								<figure class="album">
-									<img src="images/prt4.png" alt="img">
-								</figure>
-							</li>
-							<li class="album-slider__item">
-								<figure class="album">
-									<img src="images/prt5.png" alt="img">
-								</figure>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- btc team Wrapper Start -->
-	<!-- x news latter Wrapper Start -->
-	<div class="x_news_letter_main_wrapper">
+
+	<!-- newsletter Start -->
+	<!-- <div class="x_news_letter_main_wrapper">
 		<div class="container">
 			<div class="x_news_contact_wrapper">
 				<img src="images/nl1.png" alt="news_img">
@@ -2644,15 +2580,16 @@ Destinations</h3>
 				</button>
 			</div>
 		</div>
-	</div>
-	<!-- x news latter Wrapper End -->
-	<!-- x footer Wrapper Start -->
-	<div class="x_footer_top_main_wrapper float_left">
+	</div> -->
+	<!-- x newsletter  End -->
+
+	<!-- footer Wrapper Start -->
+	<!-- <div class="x_footer_top_main_wrapper float_left">
 		<div class="container">
 			<div class="row">
 				<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
 					<div class="x_footer_top_left float_left">
-						<img src="images/footer_logo.png" alt="logo">
+						<img src="{% static 'images/footer_logo.png' %}" alt="logo">
 					</div>
 				</div>
 				<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
@@ -2676,8 +2613,9 @@ Destinations</h3>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- x footer Wrapper End -->
+	</div> -->
+	<!-- footer Wrapper End -->
+
 	<!-- x footer Wrapper Start -->
 	<div class="x_footer_bottom_main_wrapper float_left">
 		<div class="container">
@@ -2685,13 +2623,13 @@ Destinations</h3>
 				<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
 					<div class="x_footer_bottom_box_wrapper float_left">
 						<h3>About Us</h3>
-						<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>	<span><a href="#">Read More &nbsp;<i class="fa fa-angle-double-right"></i></a></span>
+						<p>Sites Travel Ltd is a bespoke travel and tours management agency based in Uganda.</p>
 						<ul>
-							<li><a href="#"><i class="fa fa-facebook"></i></a>
+							<li><a href="https://web.facebook.com/sitestravelLtd"><i class="fa fa-facebook"></i></a>
 							</li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a>
+							<li><a href="https://twitter.com/Sitestravelug"><i class="fa fa-twitter"></i></a>
 							</li>
-							<li><a href="#"><i class="fa fa-linkedin"></i></a>
+							<li><a href="https://www.youtube.com/channel/UCEaQBrJr7kznLwBnEf8JoYw" style="background: #FF0000"><i class="fa fa-youtube"></i></a>
 							</li>
 						</ul>
 					</div>
@@ -2739,8 +2677,8 @@ Destinations</h3>
 							<div class="x_footer_bottom_icon">	<i class="flaticon-phone-call"></i>
 							</div>
 							<div class="x_footer_bottom_icon_cont">
-								<h4>Toll Free caling in world</h4>
-								<p>808 - 111 - 9999</p>
+								<h4>Call us</h4>
+								<p>  +256 414 347 443 <br> +256 772 200 120</p>
 							</div>
 						</div>
 						<div class="x_footer_bottom_icon_section x_footer_bottom_icon_section2 float_left">
@@ -2748,17 +2686,17 @@ Destinations</h3>
 							</div>
 							<div class="x_footer_bottom_icon_cont">
 								<h4>Email Us</h4>
-								<p><a href="#">listing@example.com</a>
+								<p><a href="mailto:reservations@sitestravel-ug.com">reservations@sitestravel-ug.com</a>
 								</p>
 							</div>
 						</div>
-						<div class="x_footer_bottom_icon_section x_footer_bottom_icon_section2 float_left">
+						<!-- <div class="x_footer_bottom_icon_section x_footer_bottom_icon_section2 float_left">
 							<div class="x_footer_bottom_icon x_footer_bottom_icon3">	<i class="fa fa-map-marker"></i>
 							</div>
 							<div class="x_footer_bottom_icon_cont x_footer_bottom_icon_cont2">
 								<h4><a href="#">View On Map</a></h4>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -2767,21 +2705,21 @@ Destinations</h3>
 	<div class="x_copyr_main_wrapper float_left">
 		<a href="javascript:" id="return-to-top"><i class="fa fa-arrow-up"></i></a>
 		<div class="container">
-			<p>Copyright © 2018 Expedia. All rights reserved.</p>
+			<p><a href="https://acodestore.tech/"> &copy; {% now "Y" %} Autonomous Codestore.</a></p>
 		</div>
 	</div>
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/modernizr.js"></script>
-	<script src="js/select2.min.js"></script>
-	<script src="js/jquery.menu-aim.js"></script>
-	<script src="js/jquery-ui.js"></script>
-	<script src="js/jquery.nice-select.min.js"></script>
-	<script src="js/owl.carousel.js"></script>
-	<script src="js/own-menu.js"></script>
-	<script src="js/jquery.bxslider.min.js"></script>
-	<script src="js/jquery.magnific-popup.js"></script>
-	<script src="js/xpedia.js"></script>
+	<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/modernizr.js' %}"></script>
+	<script src="{% static 'js/select2.min.js' %}"></script>
+	<script src="{% static 'js/jquery.menu-aim.js' %}"></script>
+	<script src="{% static 'js/jquery-ui.js' %}"></script>
+	<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+	<script src="{% static 'js/owl.carousel.js' %}"></script>
+	<script src="{% static 'js/own-menu.js' %}"></script>
+	<script src="{% static 'js/jquery.bxslider.min.js' %}"></script>
+	<script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+	<script src="{% static 'js/xpedia.js' %}"></script>
 	<!-- custom js-->
 </body>
 
