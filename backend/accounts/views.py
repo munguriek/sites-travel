@@ -15,9 +15,14 @@ def index(request):
     return render(request, "index.html", context)
 
 
-def explore(request):
+def group_packages(request):
     context = {}
-    return render(request, "explore.html", context)
+    return render(request, "packages-group.html", context)
+
+
+def custom_packages(request):
+    context = {}
+    return render(request, "packages-custom.html", context)
 
 
 def ticketing(request):
@@ -46,4 +51,4 @@ def blog_detail(request):
 
 def contacts(request):
     context = {}
-    return render(request, "contact.html", context)
+    return render(request, "contacts.html", context)
