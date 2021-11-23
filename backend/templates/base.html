@@ -133,39 +133,20 @@
 					</div>
 					<nav class="hs_main_menu d-none d-sm-none d-xs-none d-md-block">
 						<ul>
-							<li>
-								<div class="dropdown-wrapper menu-button"> <a class="menu-button" href="#">Home</a>
-									<div class="drop-menu"> <a class="menu-button" href="index.html">Home-I</a>
-										<a class="menu-button" href="index_II.html">Home-II</a>
-									</div>
-								</div>
-							</li>
+							<li> <a class="menu-button single_menu" href="{% url 'index' %}">Home </a></li>
 							<li>
 								<div class="dropdown-wrapper menu-button"> <a class="menu-button" href="#">Explore</a>
-									<div class="drop-menu"> <a class="menu-button" href="car_accessories.html">Car-Accessories</a>
-										<a class="menu-button" href="car_booking.html">Car-Booking</a>
-										<a class="menu-button" href="car_booking_done.html">Car-Booking-Done</a>
-										<a class="menu-button" href="car_checkout.html">Car-Checkout</a>
-										<a class="menu-button" href="car_detail_left.html"> Car-Detail-Left</a>
-										<a class="menu-button" href="car_detail_right.html"> Car-Detail-Right</a>
+									<div class="drop-menu"> 
+										<a class="menu-button" href="{% url 'group' %}">Group Packages</a>
+										<a class="menu-button" href="{% url 'custom' %}">Custom Package</a>
 									</div>
 								</div>
 							</li>
-							<li> <a class="menu-button single_menu" href="about.html">Ticketing</a>
-							</li>
-							<li> <a class="menu-button single_menu" href="team.html">Car Hire </a>
-							</li>
-							<li> <a class="menu-button single_menu" href="services.html">Gallery </a>
-							</li>
-							<li>
-								<div class="dropdown-wrapper menu-button"> <a class="menu-button" href="#">Blog</a>
-									<div class="drop-menu"> <a class="menu-button" href="blog_category.html">Blog-Categories</a>
-										<a class="menu-button" href="blog_single.html">Blog-Single</a>
-									</div>
-								</div>
-							</li>
-							<li> <a class="menu-button single_menu" href="services.html">Contact Us </a>
-							</li>
+							<li> <a class="menu-button single_menu" href="{% url 'ticketing' %}">Ticketing</a></li>
+							<li> <a class="menu-button single_menu" href="{% url 'cars' %}">Car Hire </a></li>
+							<li> <a class="menu-button single_menu" href="{% url 'gallery' %}">Gallery </a></li>
+							<li> <a class="menu-button single_menu" href="{% url 'blog_list' %}">Blog </a></li>
+							<li> <a class="menu-button single_menu" href="{% url 'contacts' %}">Contact Us </a></li>
 						</ul>
 					</nav>
 					<header class="mobail_menu d-none d-block d-xs-block d-sm-block d-md-none d-lg-none d-xl-none">
@@ -219,7 +200,7 @@
 										<!-- .cd-dropdown -->
 									</div>
 									<nav class="cd-dropdown">
-										<h2><a href="index.html">Xpedia</a></h2>
+										<h2><a href="index.html">Sites Travel</a></h2>
 										<a href="#0" class="cd-close">Close</a>
 										<ul class="cd-dropdown-content">
 											<li>
@@ -227,59 +208,22 @@
 													<input type="search" placeholder="Search...">
 												</form>
 											</li>
-											<li class="has-children"> <a href="#">Home</a>
+											<li> <a href="{% url 'index' %}">Home</a></li>
+											<li class="has-children"> <a href="#">Explore</a>
 												<ul class="cd-secondary-dropdown is-hidden">
 													<li class="go-back"><a href="#0">Menu</a>
 													</li>
-													<li> <a href="index.html">Home-I</a>
+													<li> <a href="{% url 'group' %}">Group Packages</a>
 													</li>
-													<!-- .has-children -->
-													<li> <a href="index_II.html">Home_II</a>
-													</li>
-													<!-- .has-children -->
-												</ul>
-												<!-- .cd-secondary-dropdown -->
-											</li>
-											<li class="has-children"> <a href="#">Car</a>
-												<ul class="cd-secondary-dropdown is-hidden">
-													<li class="go-back"><a href="#0">Menu</a>
-													</li>
-													<li> <a href="car_accessories.html">Car-Accessories</a>
-													</li>
-													<li> <a href="car_booking.html">Car-Booking</a>
-													</li>
-													<li><a href="car_booking_done.html">Car-Booking-Done</a>
-													</li>
-													<li><a href="car_checkout.html">Car-Checkout</a>
-													</li>
-													<li><a href="car_detail_left.html"> Car-Detail-Left</a>
-													</li>
-													<li><a href="car_detail_right.html"> Car-Detail-Right</a>
+													<li> <a href="{% url 'custom' %}">Custom Packages</a>
 													</li>
 													<!-- .has-children -->
 												</ul>
-												<!-- .cd-secondary-dropdown -->
 											</li>
-											<li> <a href="about.html">About</a>
-											</li>
-											<li> <a href="team.html">Our Team</a>
-											</li>
-											<li> <a href="services.html">Services</a>
-											</li>
-											<li class="has-children"> <a href="#">Blog</a>
-												<ul class="cd-secondary-dropdown is-hidden">
-													<li class="go-back"><a href="#0">Menu</a>
-													</li>
-													<li> <a href="blog_category.html">Blog Categories</a>
-													</li>
-													<!-- .has-children -->
-													<li> <a href="blog_single.html">Blog Single</a>
-													</li>
-													<!-- .has-children -->
-												</ul>
-												<!-- .cd-secondary-dropdown -->
-											</li>
-											<li> <a href="contact.html">Contact</a>
+											<li> <a href="{% url 'cars' %}">Car Hire</a></li>
+											<li> <a href="{% url 'gallery' %}">Gallery</a></li>
+											<li> <a href="{% url 'blog_list' %}">Blog</a></li>
+											<li> <a href="{% url 'contacts' %}">Contact</a>
 											</li>
 										</ul>
 										<!-- .cd-dropdown-content -->
