@@ -37,7 +37,7 @@ def cars(request):
 
 def gallery(request):
     context = {}
-    return render(request, "explore.html", context)
+    return render(request, "gallery.html", context)
 
 
 def blog_list(request):
