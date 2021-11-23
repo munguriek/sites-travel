@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+    	<!-- btc tittle Wrapper Start -->
+	<div class="btc_tittle_main_wrapper">
+		<div class="btc_tittle_img_overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
+					<div class="btc_tittle_left_heading">
+						<h1>Flight Booking</h1>
+					</div>
+				</div>
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
+					<div class="btc_tittle_right_heading">
+						<div class="btc_tittle_right_cont_wrapper">
+							<ul>
+								<li><a href="{% url 'index' %}">Home</a>  <i class="fa fa-angle-right"></i>
+								</li>
+								<li>Flight Booking</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- btc tittle Wrapper End -->
+
+	<!--  GRoup packages Start -->
+	<div class="x_offer_car_main_wrapper float_left padding_tb_100">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="x_offer_car_heading_wrapper float_left">
+						<h4>What we offer</h4>
+						<h3>Book a Flight</h3>
+						<p>Book a flight ticket for your trip with us.</p>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						{% for flight in flights %}
+						<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+							<div class="x_car_offer_main_boxes_wrapper float_left">
+								<div class="x_car_offer_img float_left mt-4">
+									<img src="{% static 'images/c1.png' %}" alt="img">
+								</div>
+								<div class="x_car_offer_heading float_left">
+									<h2><a href="#">{{flight.start}} - {{flight.destination}}</a></h2>
+									<p>$ {{flight.price |intcomma }} </p>
+									<a href="{% url 'flight' flight.id %}">{{flight.id}}</a>
+								</div>
+								<div class="btn-group btn-group-toggle my-4 mx-2 px-4" data-toggle="buttons">
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+										Book Now
+									</button>	
+									{% if request.user.is_superuser %}
+									<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalLong">
+										Update
+									</button>
+									{% endif %}
+								  </div>
+								<!-- modal start-->
+								<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+									<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+										</div>
+										<div class="modal-body">
+										...
+										</div>
+										<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-primary">Save changes</button>
+										</div>
+									</div>
+									</div>
+								</div>
+								<!-- end modal -->
+							</div>
+						</div>
+						{% endfor %}
+					
+						<!-- <div class="col-md-12">
+							<div class="x_tabs_botton_wrapper float_left">
+								<ul>
+									<li><a href="#">See All Cars <i class="fa fa-arrow-right"></i></a>
+									</li>
+								</ul>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> 
+	<!-- Group packages End -->
+
+	<!-- x footer Wrapper Start -->
+	<!-- <div class="x_footer_top_main_wrapper float_left">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+					<div class="x_footer_top_left float_left">
+						<img src="images/footer_logo.png" alt="logo">
+					</div>
+				</div>
+				<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+					<div class="x_footer_top_right float_left">
+						<div class="x_footer_top_title_box x_footer_top_title_box1">
+							<div class="x_footer_top_title_box_icon_cont">	<i class="flaticon-pie-chart"></i>
+								<h3>latest News</h3>
+							</div>
+						</div>
+						<div class="x_footer_top_title_box">
+							<div class="x_footer_top_title_box_icon_cont">	<i class="flaticon-phone-call"></i>
+								<h3>Contact our Office</h3>
+							</div>
+						</div>
+						<div class="x_footer_top_title_box">
+							<div class="x_footer_top_title_box_icon_cont x_footer_top_title_box_icon_cont_first">	<i class="flaticon-home-page"></i>
+								<h3>Get Appointment</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<!-- x footer Wrapper End -->
+
+{% endblock content %}
+    
