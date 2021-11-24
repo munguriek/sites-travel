@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 
-from .models import Flight, Package
+from .models import Flight, Gallery, Package, Transport, Car
 from . import *
 
 # Create your views here.
@@ -18,7 +18,6 @@ def custom_packages(request):
 
 def flights(request):
     flights = Flight.objects.all()
-    print(flights)
     context = {"flights": flights}
     return render(request, "flights.html", context)
 
@@ -34,12 +33,15 @@ def ticketing(request):
 
 
 def cars(request):
-    context = {}
+    cars = Car.objects.all()
+    transport = Transport.objects.all()
+    context = {"cars": cars}
     return render(request, "cars.html", context)
 
 
 def gallery(request):
-    context = {}
+    pictures = Gallery.objects.all()
+    context = {"pictures": pictures}
     return render(request, "gallery.html", context)
 
 

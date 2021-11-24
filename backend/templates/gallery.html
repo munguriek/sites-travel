@@ -29,43 +29,57 @@
 	<!-- btc tittle Wrapper End -->
 
 
-	<!-- Gallery Start -->
-	<div class="x_inner_team_main_wrapper float_left padding_tb_100">
+	<!-- xs offer car tabs Start -->
+	<div class="x_ln_car_main_wrapper float_left padding_tb_100">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="x_offer_car_heading_wrapper x_offer_car_tb_heading_wrapper float_left">
-						<h4>Sights</h4>
+						<h4>Our services in pictures</h4>
 						<h3>Gallery</h3>
-						<p>Morbi mollis vestibulum sollicitudin. Nunc in eros a justo facilisis rutrum.</p>
+						<p>Navigate through our rich gallery.</p>
 					</div>
 				</div>
-				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-					<div class="btc_team_bot_cont_main_wrapper">
-						<div class="btc_team_img_bot_wrapper">
-							<img src="{% static 'images/tb1.jpg' %}" alt="team_img1">
-						</div>
-						<div class="btc_team_img_bot_cont_wrapper">
-							<h4><a href="#">Jhon Doe</a></h4>
-							<p>Age - 30 Year</p>
-						</div>
+				<div class="col-md-12">
+					<div class="x_ln_car_heading_wrapper float_left">
+						<h3>Pictures</h3>
 					</div>
 				</div>
-				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-					<div class="btc_team_bot_cont_main_wrapper">
-						<div class="btc_team_img_bot_wrapper">
-							<img src="{% static 'images/tb2.jpg' %}" alt="team_img1">
-						</div>
-						<div class="btc_team_img_bot_cont_wrapper">
-							<h4><a href="#">Jhon Doe</a></h4>
-							<p>Age - 30 Year</p>
+				<div class="col-md-12">
+					<div class="btc_ln_slider_wrapper">
+						<div class="owl-carousel owl-theme">
+							{% if pictures %}
+							{% for pic in pictures %}
+							<div class="item">
+								<div class="btc_team_slider_cont_main_wrapper">
+									<div class="btc_team_img_wrapper">
+										{% if pic.picture %}
+										<img src="{{pic.picture.url}}" alt="image">
+										{% else %}
+											<p class="text-center">image</p>
+										{% endif %}
+										<!-- <div class="btc_team_social_wrapper">
+											<ul>
+												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+											</ul>
+										</div> -->
+									</div>
+									<div class="btc_team_img_cont_wrapper">
+										<p>Golden Sparrow</p>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+							{% else %}
+								<p class="text-center">No pictures uploaded yet</p>
+							{% endif %}						
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Gallery end -->
+	<!--js Start-->
 
 
 {% endblock content %}
