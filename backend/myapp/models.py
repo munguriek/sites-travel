@@ -72,6 +72,12 @@ class Package(models.Model):
     nationality = models.CharField(max_length=100)
     telephone = models.CharField(max_length=20)
 
+    class Meta :
+       ordering = ['-id']
+
+    def __str__(self):
+        return f"{self.type} "
+
 
 class Flight(models.Model):
     start = models.CharField(max_length=50)
