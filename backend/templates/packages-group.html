@@ -8,7 +8,7 @@
 			<div class="row">
 				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
 					<div class="btc_tittle_left_heading">
-						<h1>Explore Packages</h1>
+						<h1>Group Packages </h1>
 					</div>
 				</div>
 				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
@@ -17,7 +17,7 @@
 							<ul>
 								<li><a href="{% url 'index' %}">Home</a>  <i class="fa fa-angle-right"></i>
 								</li>
-								<li>Group packages</li>
+								<li>Group Packages</li>
 							</ul>
 						</div>
 					</div>
@@ -27,136 +27,37 @@
 	</div>
 	<!-- btc tittle Wrapper End -->
 
-	<!--  GRoup packages Start -->
-	<div class="x_offer_car_main_wrapper float_left padding_tb_100">
+	<!-- xs offer car tabs Start -->
+	<div class="x_inner_team_main_wrapper float_left padding_tb_100">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="x_offer_car_heading_wrapper float_left">
+					<div class="x_offer_car_heading_wrapper x_offer_car_tb_heading_wrapper float_left">
 						<h4>What we offer</h4>
 						<h3>Group Packages</h3>
-						<p>Do you have a group</p>
+						<p>Select from a list of these group packages.</p>
 					</div>
 				</div>
-				<div class="col-md-12">
-					<div class="row">
-						<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-							<div class="x_car_offer_main_boxes_wrapper float_left">
-								<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
-									<i class="fa fa-star-o"></i>
-								</div>
-								<div class="x_car_offer_img float_left">
-									<img src="{% static 'images/c1.png' %}" alt="img">
-								</div>
-								<div class="x_car_offer_heading float_left">
-									<h2><a href="#">2 days at MURCHISON FALLS NATIONAL PARK</a></h2>
-									<p>4 slots </p>
-								</div>
-								<!-- <div class="x_car_offer_heading float_left">
-									<ul>
-										<li><a href="#"><i class="fa fa-users"></i> &nbsp;4</a></li>
-										<li><a href="#"><i class="fa fa-clone"></i> &nbsp;2</a></li>
-										<li><a href="#"><i class="fa fa-briefcase"></i> &nbsp;9</a></li>
-										<li>
-											<div class="nice-select" tabindex="0">	<span class="current"><i class="fa fa-bars"></i></span>
-												<ul class="list">
-													<li class="dpopy_li"><a href="#"><i class="fa fa-snowflake-o"></i> Air Conditioning</a>
-													</li>
-													<li class="dpopy_li"><a href="#"><i class="fa fa-code-fork"></i> Transmission</a>
-													</li>
-													<li class="dpopy_li"><a href="#"><i class="fa fa-user-circle-o"></i> Minimum age</a>
-													</li>
-												</ul>
-											</div>
-										</li>
-									</ul>
-								</div> -->
-								<div class="x_car_offer_bottom_btn float_left">
-									<ul>
-										<li><a href="#">Book now</a>
-										</li>
-										<li><a href="#">Details</a>
-										</li>
-									</ul>
-								</div>
+				{% for package in group_packages %}
+				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+					<div class="btc_team_bot_cont_main_wrapper">
+						<div class="btc_team_img_bot_wrapper">
+							<img src="{% static 'images/tb1.jpg' %}" alt="team_img1">
+							<div class="btc_team_social_tb_wrapper">
+								<h3>14 Year Experience</h3>
 							</div>
 						</div>
-
-						<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-							<div class="x_car_offer_main_boxes_wrapper float_left">
-								<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
-									<i class="fa fa-star-o"></i>
-								</div>
-								<div class="x_car_offer_img float_left">
-									<img src="{% static 'images/c8.png' %}" alt="img">
-								</div>
-								<div class="x_car_offer_heading float_left">
-									<h2><a href="#">Freightliner</a></h2>
-									<p>Extra Small</p>
-								</div>
-								<div class="x_car_offer_bottom_btn float_left">
-									<ul>
-										<li><a href="#">Book now</a>
-										</li>
-										<li><a href="#">Details</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="x_tabs_botton_wrapper float_left">
-								<ul>
-									<li><a href="#">See All Cars <i class="fa fa-arrow-right"></i></a>
-									</li>
-								</ul>
-							</div>
+						<div class="btc_team_img_bot_cont_wrapper">
+							<h4><a href="#">{{package}}</a></h4>
+							<p>Age - 30 Year</p>
 						</div>
 					</div>
 				</div>
+				{% endfor %}
 			</div>
 		</div>
-	</div> 
-	<!-- Group packages End -->
-
-	<!-- x footer Wrapper Start -->
-	<!-- <div class="x_footer_top_main_wrapper float_left">
-		<div class="container">
-			<div class="row">
-				<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-					<div class="x_footer_top_left float_left">
-						<img src="images/footer_logo.png" alt="logo">
-					</div>
-				</div>
-				<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-					<div class="x_footer_top_right float_left">
-						<div class="x_footer_top_title_box x_footer_top_title_box1">
-							<div class="x_footer_top_title_box_icon_cont">	<i class="flaticon-pie-chart"></i>
-								<h3>latest News</h3>
-							</div>
-						</div>
-						<div class="x_footer_top_title_box">
-							<div class="x_footer_top_title_box_icon_cont">	<i class="flaticon-phone-call"></i>
-								<h3>Contact our Office</h3>
-							</div>
-						</div>
-						<div class="x_footer_top_title_box">
-							<div class="x_footer_top_title_box_icon_cont x_footer_top_title_box_icon_cont_first">	<i class="flaticon-home-page"></i>
-								<h3>Get Appointment</h3>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-	<!-- x footer Wrapper End -->
+	</div>
+	<!-- xs offer car tabs Start -->
 
 {% endblock content %}
     

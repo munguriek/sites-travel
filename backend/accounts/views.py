@@ -15,40 +15,7 @@ def index(request):
     return render(request, "index.html", context)
 
 
-def group_packages(request):
+def main(request):
+    """Index page for admin panel."""
     context = {}
-    return render(request, "packages-group.html", context)
-
-
-def custom_packages(request):
-    context = {}
-    return render(request, "packages-custom.html", context)
-
-
-def ticketing(request):
-    context = {}
-    return render(request, "ticketing.html", context)
-
-
-def cars(request):
-    context = {}
-    return render(request, "cars.html", context)
-
-
-def gallery(request):
-    context = {}
-    return render(request, "gallery.html", context)
-
-
-def blog_list(request):
-    context = {}
-    return render(request, "blog_list.html", context)
-
-def blog_detail(request):
-    context = {}
-    return render(request, "blog_detail.html", context)
-
-
-def contacts(request):
-    context = {}
-    return render(request, "contacts.html", context)
+    return render(request, "admin/main.html", context) 
