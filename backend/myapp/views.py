@@ -1,11 +1,13 @@
 from django.shortcuts import get_object_or_404, render
 
-from myapp.models import Flight
+from .models import Flight, Package
 from . import *
 
 # Create your views here.
 def group_packages(request):
-    context = {}
+    packages = Package.objects.filter(type='group')
+    print(packages.count())
+    context = {'group_packages': packages}
     return render(request, "packages-group.html", context)
 
 
