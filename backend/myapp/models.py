@@ -11,6 +11,9 @@ class Accomadation(models.Model):
     name = models.CharField(max_length=100)
     budget = models.CharField(max_length=100, choices=BUDGET)
 
+    def __str__(self):
+        return f"{self.name}"
+
 
 # PACKAGE_NAME = (
 #     ('safari', 'safari'),
@@ -23,10 +26,22 @@ class PackageCategory(models.Model):
     """Prepopulate into package, eg are safari, culture."""
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return f"{self.name}"
+
 class Activity(models.Model):
     """Prepopulate into package, eg culture site vist."""
     package = models.ForeignKey(PackageCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.name}"
+
+class Car(models.Model):
+    make = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.make}"
 
 
 DRIVER = (
@@ -42,11 +57,14 @@ class Transport(models.Model):
     budget = models.CharField(max_length=100, choices=BUDGET)
     car = models.CharField(max_length=100)
     driver = models.CharField(max_length=100, choices=DRIVER)
-    budget = models.CharField(max_length=100, choices=TRIP)
+    trip = models.CharField(max_length=100, choices=TRIP)
     pickup = models.CharField(max_length=100)
     dropoff = models.CharField(max_length=100)
     start = models.DateField()
     end = models.DateField()
+
+    def __str__(self):
+        return f"{self.car}"
 
 
 PACKAGE_TYPES = (
@@ -113,6 +131,9 @@ class Ticket(models.Model):
         return f"{self.first_name} {self.last_name} - {self.flight}"
 
 
+class Gallery(models.Model):
+    picture = models.ImageField(upload_to="gallery")
+    caption = models.CharField(max_length=80)
 
-
-
+    def __str__(self):
+        return f"{self.caption}"

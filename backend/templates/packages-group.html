@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block content %}
     	<!-- btc tittle Wrapper Start -->
 	<div class="btc_tittle_main_wrapper">
@@ -44,12 +45,12 @@
 						<div class="btc_team_img_bot_wrapper">
 							<img src="{% static 'images/tb1.jpg' %}" alt="team_img1">
 							<div class="btc_team_social_tb_wrapper">
-								<h3>14 Year Experience</h3>
+								<h3>{{package.slots}} slot left</h3>
 							</div>
 						</div>
 						<div class="btc_team_img_bot_cont_wrapper">
-							<h4><a href="#">{{package}}</a></h4>
-							<p>Age - 30 Year</p>
+							<h4><a href="#">2 days at {{package.destination}}</a></h4>
+							<p>$ {{package.price |intcomma }}</p>
 						</div>
 					</div>
 				</div>
