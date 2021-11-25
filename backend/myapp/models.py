@@ -49,8 +49,8 @@ DRIVER = (
     ('self', 'self'),
 )
 TRIP = (
-    ('Up Country', 'Up Country'),
-    ('Town Service', 'Town Service'),
+    ('up country', 'up country'),
+    ('town service', 'town service'),
 )
 class Transport(models.Model):
     """Prepopulate into package."""
@@ -113,8 +113,13 @@ class Flight(models.Model):
         return f"{self.start} - {self.destination}"
 
 
+TICKET_TYPE = (
+    ('one way', 'one way'),
+    ('return', 'return'),
+)
 class Ticket(models.Model):
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE)
+    type = models.CharField(max_length=30, choices=TICKET_TYPE)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
