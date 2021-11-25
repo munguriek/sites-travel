@@ -1,12 +1,13 @@
 from django.shortcuts import get_object_or_404, render
-
 from .models import Flight, Gallery, Package, Transport, Car
 from . import *
+from django.contrib import messages
+
 
 # Create your views here.
 def group_packages(request):
     packages = Package.objects.filter(type='group')
-    print(packages.count())
+    messages.success(request, "Thanks") 
     context = {'group_packages': packages}
     return render(request, "packages-group.html", context)
 
@@ -35,6 +36,7 @@ def ticketing(request):
 def cars(request):
     cars = Car.objects.all()
     transport = Transport.objects.all()
+    messages.success(request, "Thanks")
     context = {"cars": cars}
     return render(request, "cars.html", context)
 
