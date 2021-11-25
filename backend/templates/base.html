@@ -313,6 +313,16 @@
 		<a href="javascript:" id="return-to-top"><i class="fa fa-arrow-up"></i></a>
 		<div class="container"><p>&copy; {% now "Y" %} Site Travels Ltd Uganda.</p></div>
 	</div>
+
+	<!-- Alert timeout -->
+	<script type="text/javascript">
+		window.setTimeout(function() {
+		$(".alert").fadeTo(500, 0).slideUp(500, function(){
+			$(this).remove(); 
+		});
+		}, 2000);
+	</script>
+
 	<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 	<script src="{% static 'js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'js/modernizr.js' %}"></script>

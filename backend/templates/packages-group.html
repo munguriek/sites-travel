@@ -44,6 +44,8 @@
 						<p>Select from a list of these group packages.</p>
 					</div>
 				</div>
+				
+				{% if group_packages %}
 				{% for package in group_packages %}
 				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
 					<div class="btc_team_bot_cont_main_wrapper">
@@ -60,6 +62,9 @@
 					</div>
 				</div>
 				{% endfor %}
+				{% else %}
+					<p class="mx-auto">No group package available</p>
+				{% endif %}
 			</div>
 		</div>
 	</div>

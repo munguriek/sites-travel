@@ -42,6 +42,8 @@
 						<p>We help you book flights.</p>
 					</div>
 				</div>
+				
+				{% if flights  %}
 				{% for flight in flights %}
 				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
 					<div class="btc_team_bot_cont_main_wrapper">
@@ -58,6 +60,11 @@
 					</div>
 				</div>
 				{% endfor %}
+				{% else %}
+					<p class="mx-auto">No flights yet</p>	
+				{% endif %}
+					
+
 			</div>
 		</div>
 	</div>
