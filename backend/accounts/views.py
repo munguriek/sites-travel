@@ -15,6 +15,10 @@ def index(request):
     return render(request, "index.html", context)
 
 
+def login(request):
+        return render(request, "admin/login.html")
+
+
 def main(request):
     """Index page for admin panel."""
     context = {}

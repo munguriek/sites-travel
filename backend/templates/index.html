@@ -65,9 +65,10 @@
 								<option>EUR</option>
 							</select>	<i class="fa fa-money"></i>
 						</li>
-						<li class="login">	<a href="login.html"><i class="fa fa-power-off"></i> &nbsp;&nbsp;login</a></li>
-						<li class="register">	<a href="register.html"><i class="fa fa-plus-circle"></i> &nbsp;&nbsp;register</a></li>
+						<li class="login">	<a href="{% url 'login' %}"><i class="fa fa-power-off"></i> &nbsp;&nbsp;login</a></li>
+						<li class="register">	<a href="{% url 'login' %}"><i class="fa fa-plus-circle"></i> &nbsp;&nbsp;register</a></li>
 						{% if request.user.is_staff %}
+							<li class="login"><a href="{% url 'main' %}" class="mx-2"><i class="fa-solid fa-life-ring"></i>&nbsp;driver</a></li>
 							<li class="login"><a href="{% url 'main' %}" class="mx-2"><i class="fa-solid fa-shield-virus"></i>&nbsp;admin</a></li>
 						{% endif %}
 						<li>
