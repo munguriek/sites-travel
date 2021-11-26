@@ -1,70 +1,115 @@
-{% extends 'base.html' %}
-{% load static %}
-{% load humanize %}
+{% extends 'base.html' %} 
+{% load static %} 
+{% load crispy_forms_tags %}
 {% block content %}
-    	<!-- btc tittle Wrapper Start -->
-	<div class="btc_tittle_main_wrapper">
-		<div class="btc_tittle_img_overlay"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
-					<div class="btc_tittle_left_heading">
-						<h1>Car Hire</h1>
-					</div>
+
+<!-- hs Navigation End -->
+<!-- btc tittle Wrapper Start -->
+<div class="btc_tittle_main_wrapper">
+	<div class="btc_tittle_img_overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
+				<div class="btc_tittle_left_heading">
+					<h1>cars</h1>
 				</div>
-				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
-					<div class="btc_tittle_right_heading">
-						<div class="btc_tittle_right_cont_wrapper">
-							<ul>
-								<li><a href="{% url 'index' %}">Home</a>  <i class="fa fa-angle-right"></i>
-								</li>
-								<li>Car Hire</li>
-							</ul>
-						</div>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
+				<div class="btc_tittle_right_heading">
+					<div class="btc_tittle_right_cont_wrapper">
+						<ul>
+							<li>
+								<a href="{% url 'index' %}">Home</a>
+								<i class="fa fa-angle-right"></i>
+							</li>
+							<li>Cars</li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- btc tittle Wrapper End -->
+</div>
+<!-- btc tittle Wrapper End -->
 
-	<!-- xs offer car tabs Start -->
-	<div class="x_inner_team_main_wrapper float_left padding_tb_100">
-		<div class="container">
-			<div class="row">
-				<div class="col-12 col-md-8 offset-md-3">
-                    <p class="text-center">{% include 'includes/messages.html' %}</p>
-                </div>
-				<div class="col-md-12">
-					<div class="x_offer_car_heading_wrapper x_offer_car_tb_heading_wrapper float_left">
-						<h4>What we offer</h4>
-						<h3>Car Hire</h3>
-						<p>Hire from our fleet of cars.</p>
+
+<!-- Packages Start -->
+<div class="x_blog_sidebar_main_wrapper float_left padding_tb_100">
+	<div class="container">
+		<div class="row">
+			<!-- sidebar -->
+			{% include 'includes/sidebar.html' %}
+			<div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
+				<div class="x_carbooking_right_section_wrapper float_left">
+					<div class="row">
+						<div class="x_services_title_main_wrapper float_left padding_tb_10">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="x_offer_car_heading_wrapper x_offer_car_tb_heading_wrapper float_left">
+											<h4>All Cars</h4>
+											<h3>Cars</h3>
+											<!-- <p>Dashboard and Management console for Site Travel website</p> -->
+										</div>
+									</div>
+									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 full_width">
+									<!-- modal start-->
+									<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+										Add car
+									</button>
+									<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered modal-lg">
+										<div class="modal-content">
+											<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											</div>
+											<div class="modal-body">
+												<form method="post">
+													{% csrf_token %}
+													{{ flight_form |crispy }}
+													<div class="float-right">
+														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+														<button type="submit" class="btn btn-primary">Save</button>
+													</div>
+												</form>
+											</div>
+										</div>
+										</div>
+									</div>
+									<table id="myTable" class="table table-bordered table-hover table-striped table-responsive">
+										<thead>
+											<tr>
+												<th class="text-center">Start</th>
+											</tr>
+										</thead>
+										<tbody>
+											
+											{% for car  in cars  %}
+											<tr>
+												<td>{{car.make}}</td>
+											</tr>
+											{% endfor %}
+										</tbody>
+										</table>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<!-- <div class="col-md-12">
+							<div class="x_car_acc_bottom_button float_left">
+								<p><i class="fa fa-info-circle"></i> &nbsp;Phasellus ornare, ante purus sa dolor.</p>
+							</div>
+						</div> -->
 					</div>
 				</div>
-				{% if cars %}
-				{% for car in cars %}
-				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-					<div class="btc_team_bot_cont_main_wrapper">
-						<div class="btc_team_img_bot_wrapper">
-							<img src="{% static 'images/tb1.jpg' %}" alt="team_img1">
-							<!-- <div class="btc_team_social_tb_wrapper">
-								<h3>{{flight.start}} slot left</h3>
-							</div> -->
-						</div>
-						<div class="btc_team_img_bot_cont_wrapper">
-							<h4><a href="#">{{car.make |title }}</a></h4>
-						</div>
-					</div>
-				</div>
-				{% endfor %}
-				{% else %}
-					<p class="mx-auto">No car available</p>
-				{% endif %}
 			</div>
 		</div>
 	</div>
-	<!-- xs offer car tabs Start -->
+</div>
+<!-- Packages End -->
 
-{% endblock content %}
-    
+{% endblock %}

@@ -7,52 +7,64 @@ import datetime
 from django.forms import Form, ModelForm, DateField, widgets
 
 
-
-# class BatchForm(forms.ModelForm):
-#     drug = forms.ModelChoiceField(queryset=Vaccine.objects.filter(approved=True), empty_label='Select from list of vaccines')
-#     batch = forms.CharField(widget= forms.TextInput(attrs={'placeholder':'Enter batch number of drug'}))
-#     serial = forms.CharField(widget= forms.TextInput(attrs={'placeholder':'Enter serial number of drug'}))
-
-#     def __init__(self, *args, **kwargs):
-#         super(BatchForm, self).__init__(*args, **kwargs)
-#         self.fields['batch'].label = "Batch number"
-#         self.fields['serial'].label = "Serial number"
-#         self.fields['drug'].label = "Vaccine Name"
-
-#     def clean_date(self):
-#         date = self.cleaned_data['date']
-#         if self.expiry < datetime.date.today():
-#             raise forms.ValidationError("Expiry date cannot be in the past!")
-#         return date
-
-#     class Meta:
-#         model = Batch
-#         fields = '__all__'
-#         exclude = ('approved', 'added_by', )   
-#         widgets = {
-#             'expiry': widgets.DateInput(attrs={'type': 'date'})
-#         } 
-
-
 class PackageForm(forms.ModelForm):
-    # drug = forms.ModelChoiceField(queryset=Package.objects.filter(approved=True), empty_label='Select from list of vaccines')
-    # batch = forms.CharField(widget= forms.TextInput(attrs={'placeholder':'Enter batch number of drug'}))
+    category = forms.ModelChoiceField(queryset=PackageCategory.objects.all(), empty_label='Select package category')
+    # type = forms.CharField(widget= forms.TextInput(attrs={'placeholder':'Enter type'}))
 
     def __init__(self, *args, **kwargs):
         super(PackageForm, self).__init__(*args, **kwargs)
-        # self.fields['batch'].label = "Batch number"
+        self.fields['type'].label = "Package type"
 
-    # def clean_date(self):
-    #     date = self.cleaned_data['date']
-    #     if self.expiry < datetime.date.today():
-    #         raise forms.ValidationError("Expiry date cannot be in the past!")
-    #     return date
+    def clean_date(self):
+        date = self.cleaned_data['date']
+        if self.start < datetime.date.today():
+            raise forms.ValidationError("Book only dates in the future!")
+        return date
 
     class Meta:
         model = Package
         fields = '__all__'
-        exclude = ('approved', 'added_by', )   
+        exclude = ('id', )   
         widgets = {
             'start': widgets.DateInput(attrs={'type': 'date'}),
             'end': widgets.DateInput(attrs={'type': 'date'})
         } 
+
+
+class FlightForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(FlightForm, self).__init__(*args, **kwargs)
+        # self.fields['batch'].label = "Batch number"
+
+    class Meta:
+        model = Flight
+        fields = '__all__'
+        exclude = ('id', )   
+        widgets = {
+            'start': widgets.DateInput(attrs={'type': 'date'}),
+            'end': widgets.DateInput(attrs={'type': 'date'})
+        }
+
+
+class CarForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(CarForm, self).__init__(*args, **kwargs)
+        # self.fields['batch'].label = "Batch number"
+    class Meta:
+        model = Car
+        fields = '__all__'
+        exclude = ('id', )   
+     
+
+class GalleryForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(GalleryForm, self).__init__(*args, **kwargs)
+        # self.fields['batch'].label = "Batch number"
+    class Meta:
+        model = Gallery
+        fields = '__all__'
+        exclude = ('id', )   
+     

@@ -1,5 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Flight, Gallery, Package, Transport, Car, Ticket, Accomadation
+from .forms import PackageForm, FlightForm, CarForm, GalleryForm
+# TransportForm, CarForm, TicketForm, AccomadationForm
 from . import *
 from django.contrib import messages
 from .forms import PackageForm
@@ -20,23 +22,18 @@ def custom_packages(request):
     return render(request, "packages-custom.html", context)
 
 
-def flights(request):
+def flight_list(request):
     flights = Flight.objects.all()
     context = {"flights": flights}
     return render(request, "flights.html", context)
 
-def flight(request, pk):
-    flight = get_object_or_404(Flight, pk=pk)
-    print(flight)
-    context = {"flight": flight}
-    return render(request, "flights.html", context)
 
 def ticketing(request):
     context = {}
     return render(request, "ticketing.html", context)
 
 
-def cars(request):
+def car_list(request):
     cars = Car.objects.all()
     transport = Transport.objects.all()
     messages.success(request, "Thanks")
@@ -60,8 +57,7 @@ def blog_detail(request):
 
 
 def contacts(request):
-    context = {}
-    return render(request, "contacts.html", context)
+    return render(request, "contacts.html")
 
 
 
@@ -121,4 +117,52 @@ def packages(request):
         'package_form': package_form,
     }
     return render(request, "admin/packages.html", context)
+
+
+def flights(request):
+    flights = Flight.objects.all()
+
+    flight_form = FlightForm(request.POST or None, request.FILES or None)
+    if flight_form.is_valid():
+        instance = flight_form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Flight saved successfully')
+        return redirect('flights')
+    context = {
+        'flights': flights,
+        'flight_form': flight_form,
+    }
+    return render(request, "admin/flights.html", context)
+
+
+def cars(request):
+    cars = Car.objects.all()
+
+    car_form = CarForm(request.POST or None, request.FILES or None)
+    if car_form.is_valid():
+        instance = car_form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Flight saved successfully')
+        return redirect('cars')
+    context = {
+        'cars': cars,
+        'car_form': car_form,
+    }
+    return render(request, "admin/cars.html", context)
+
+
+def pictures(request):
+    pictures = Gallery.objects.all()
+
+    picture_form = GalleryForm(request.POST or None, request.FILES or None)
+    if picture_form.is_valid():
+        instance = picture_form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Picture saved successfully')
+        return redirect('pictures')
+    context = {
+        'pictures': pictures,
+        'picture_form': picture_form,
+    }
+    return render(request, "admin/pictures.html", context)
 
