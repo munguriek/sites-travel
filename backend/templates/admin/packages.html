@@ -67,7 +67,7 @@
 											</button>
 											</div>
 											<div class="modal-body">
-												<form method="post">
+												<form method="post" enctype='multipart/form-data'>
 													{% csrf_token %}
 													{{ package_form |crispy }}
 													<div class="float-right">

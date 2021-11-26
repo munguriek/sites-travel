@@ -41,10 +41,6 @@ class FlightForm(forms.ModelForm):
         model = Flight
         fields = '__all__'
         exclude = ('id', )   
-        widgets = {
-            'start': widgets.DateInput(attrs={'type': 'date'}),
-            'end': widgets.DateInput(attrs={'type': 'date'})
-        }
 
 
 class CarForm(forms.ModelForm):

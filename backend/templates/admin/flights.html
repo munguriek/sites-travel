@@ -67,7 +67,7 @@
 											</button>
 											</div>
 											<div class="modal-body">
-												<form method="post">
+												<form method="post" enctype='multipart/form-data'>
 													{% csrf_token %}
 													{{ flight_form |crispy }}
 													<div class="float-right">
@@ -82,9 +82,9 @@
 									<table id="myTable" class="table table-bordered table-hover table-striped table-responsive">
 										<thead>
 											<tr>
-												<th class="text-center">Start</th>
-												<th class="text-center">Destination</th>
-												<th class="text-center">Price</th>
+												<th >Start</th>
+												<th >Destination</th>
+												<th >Price</th>
 											</tr>
 										</thead>
 										<tbody>

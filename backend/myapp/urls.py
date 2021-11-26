@@ -18,7 +18,6 @@ urlpatterns = [
     path('flights', views.flights, name='flights'),
     path('cars', views.cars, name='cars'),
 
-    path('pictures', views.pictures, name='pictures'),
 
 
 ]

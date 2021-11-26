@@ -48,7 +48,11 @@
 				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
 					<div class="btc_team_bot_cont_main_wrapper">
 						<div class="btc_team_img_bot_wrapper">
-							<img src="{% static 'images/tb1.jpg' %}" alt="team_img1">
+							{% if flight.image %}
+							<img src="{{flight.image.url}}" alt="flight image">
+							{% else %}
+							<img src="{% static 'images/tb1.jpg' %}" alt="flight image">
+							{% endif %}
 							<!-- <div class="btc_team_social_tb_wrapper">
 								<h3>{{flight.start}} slot left</h3>
 							</div> -->
@@ -63,6 +67,8 @@
 				{% else %}
 					<p class="mx-auto">No flights yet</p>	
 				{% endif %}
+					
+
 			</div>
 		</div>
 	</div>

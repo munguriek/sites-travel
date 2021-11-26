@@ -10,7 +10,6 @@ from .forms import PackageForm
 # Create your views here.
 def group_packages(request):
     packages = Package.objects.filter(type='group')
-    messages.success(request, "Thanks") 
     context = {
         'group_packages': packages,
     }
@@ -36,14 +35,23 @@ def ticketing(request):
 def car_list(request):
     cars = Car.objects.all()
     transport = Transport.objects.all()
-    messages.success(request, "Thanks")
     context = {"cars": cars}
     return render(request, "cars.html", context)
 
 
 def gallery(request):
     pictures = Gallery.objects.all()
-    context = {"pictures": pictures}
+
+    picture_form = GalleryForm(request.POST or None, request.FILES or None)
+    if picture_form.is_valid():
+        instance = picture_form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Picture saved successfully')
+        return redirect('gallery')
+    context = {
+        "pictures": pictures,
+        "picture_form": picture_form,
+    }
     return render(request, "gallery.html", context)
 
 
@@ -142,7 +150,7 @@ def cars(request):
     if car_form.is_valid():
         instance = car_form.save(commit=False)
         instance.save()                 
-        messages.success(request, 'Flight saved successfully')
+        messages.success(request, 'Car saved successfully')
         return redirect('cars')
     context = {
         'cars': cars,
@@ -150,19 +158,4 @@ def cars(request):
     }
     return render(request, "admin/cars.html", context)
 
-
-def pictures(request):
-    pictures = Gallery.objects.all()
-
-    picture_form = GalleryForm(request.POST or None, request.FILES or None)
-    if picture_form.is_valid():
-        instance = picture_form.save(commit=False)
-        instance.save()                 
-        messages.success(request, 'Picture saved successfully')
-        return redirect('pictures')
-    context = {
-        'pictures': pictures,
-        'picture_form': picture_form,
-    }
-    return render(request, "admin/pictures.html", context)
 
