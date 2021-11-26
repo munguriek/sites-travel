@@ -17,6 +17,10 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/xpedia.css' %}" />
 	<!--favicon-->
 	<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" />
+	<!-- datatables -->
+	<!-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css"> -->
+	<link rel="stylesheet" href="{% static 'vendor/simple-datatables/style.css' %}">
+
 </head>
 
 <body>
@@ -40,7 +44,10 @@
 	<div class="x_top_header_wrapper float_left">
 		<div class="container">
 			<div class="x_top_header_left_side_wrapper float_left">
-				<p>Call Us : <a class="text-white" href="tel:+256 414 347 443">+256 414 347 443</a></p>
+				<p>Call Us : 
+					<a class="text-white" href="tel:+256 414 347 443">+256 414 347 443</a>
+					<!-- <a href="tel:+256772200120" class="text-white"> +256 772 200 120</a> -->
+				 </p>
 			</div>
 			<div class="x_top_header_right_side_wrapper float_left">
 				<div class="x_top_header_social_icon_wrapper">
@@ -64,8 +71,13 @@
 								<option>EUR</option>
 							</select>	<i class="fa fa-money"></i>
 						</li> -->
-						<li class="login"><a href="{% url 'login' %}" class="mx-2"><i class="fa fa-power-off"></i> &nbsp;login</a></li>
-						<li class="register"><a href="{% url 'login' %}" class="mx-2"><i class="fa fa-plus-circle"></i> &nbsp;register</a></li>
+
+						{% if request.user.is_authenticated %}
+						<li class="login">	<a href="{% url 'account_logout' %}"><i class="fa fa-power-off"></i> &nbsp;&nbsp;logout</a></li>
+						{% else %}
+						<li class="login">	<a href="{% url 'account_login' %}"><i class="fa fa-power-off"></i> &nbsp;&nbsp;login</a></li>
+						<li class="register">	<a href="{% url 'account_signup' %}"><i class="fa fa-plus-circle"></i> &nbsp;&nbsp;register</a></li>
+						{% endif %}
 						{% if request.user.is_staff %}
 							<li class="login"><a href="{% url 'main' %}" class="mx-2"><i class="fa-solid fa-life-ring"></i>&nbsp;driver</a></li>
 							<li class="login"><a href="{% url 'main' %}" class="mx-2"><i class="fa-solid fa-shield-virus"></i>&nbsp;admin</a></li>
@@ -141,8 +153,8 @@
 									</div>
 								</div>
 							</li>
-							<li> <a class="menu-button single_menu" href="{% url 'flights' %}">Ticketing</a></li>
-							<li> <a class="menu-button single_menu" href="{% url 'cars' %}">Car Hire </a></li>
+							<li> <a class="menu-button single_menu" href="{% url 'flight_list' %}">Ticketing</a></li>
+							<li> <a class="menu-button single_menu" href="{% url 'car_list' %}">Car Hire </a></li>
 							<li> <a class="menu-button single_menu" href="{% url 'gallery' %}">Gallery </a></li>
 							<li> <a class="menu-button single_menu" href="{% url 'blog_list' %}">Blog </a></li>
 							<li> <a class="menu-button single_menu" href="{% url 'contacts' %}">Contact Us </a></li>
@@ -305,6 +317,23 @@
 		<a href="javascript:" id="return-to-top"><i class="fa fa-arrow-up"></i></a>
 		<div class="container"><p>&copy; {% now "Y" %} Site Travels Ltd Uganda.</p></div>
 	</div>
+
+	<!-- Alert timeout -->
+	<script type="text/javascript">
+		window.setTimeout(function() {
+		$(".alert").fadeTo(500, 0).slideUp(500, function(){
+			$(this).remove(); 
+		});
+		}, 2000);
+	</script>
+
+	<script src="{% static 'vendor/simple-datatables/simple-datatables.js' %}"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script> -->
+	<script>
+		let myTable = document.querySelector('#myTable');
+		let dataTable = new simpleDatatables.DataTable(myTable);
+	</script>
+
 	<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 	<script src="{% static 'js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'js/modernizr.js' %}"></script>

@@ -39,6 +39,7 @@ class Activity(models.Model):
 
 class Car(models.Model):
     make = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="cars")
 
     def __str__(self):
         return f"{self.make}"
@@ -49,8 +50,8 @@ DRIVER = (
     ('self', 'self'),
 )
 TRIP = (
-    ('Up Country', 'Up Country'),
-    ('Town Service', 'Town Service'),
+    ('up country', 'up country'),
+    ('town service', 'town service'),
 )
 class Transport(models.Model):
     """Prepopulate into package."""
@@ -76,6 +77,7 @@ class Package(models.Model):
     type = models.CharField(max_length=100, choices=PACKAGE_TYPES)
     category = models.ForeignKey(PackageCategory, on_delete=models.CASCADE)
     destination = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="package")
     slots = models.PositiveIntegerField(default=0)
     start = models.DateField()
     end = models.DateField()
@@ -101,6 +103,7 @@ class Flight(models.Model):
     start = models.CharField(max_length=50)
     destination = models.CharField(max_length=50)
     price = models.PositiveIntegerField()
+    image = models.ImageField(upload_to="flights")
 
     class Meta :
        ordering = ['-id']
@@ -113,8 +116,13 @@ class Flight(models.Model):
         return f"{self.start} - {self.destination}"
 
 
+TICKET_TYPE = (
+    ('one way', 'one way'),
+    ('return', 'return'),
+)
 class Ticket(models.Model):
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE)
+    type = models.CharField(max_length=30, choices=TICKET_TYPE)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField()

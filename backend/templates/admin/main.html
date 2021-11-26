@@ -10,7 +10,7 @@
 		<div class="row">
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
 				<div class="btc_tittle_left_heading">
-					<h1>Blogs</h1>
+					<h1>Dashboard</h1>
 				</div>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
@@ -21,7 +21,7 @@
 								<a href="{% url 'index' %}">Home</a>
 								<i class="fa fa-angle-right"></i>
 							</li>
-							<li>Admin</li>
+							<li>Admin Dashboard</li>
 						</ul>
 					</div>
 				</div>
@@ -36,116 +36,88 @@
 <div class="x_blog_sidebar_main_wrapper float_left padding_tb_100">
 	<div class="container">
 		<div class="row">
-			<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-				<div class="x_blog_right_side_wrapper float_left">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="
-                  jp_rightside_job_categories_wrapper jp_blog_right_box_search
-                ">
-								<div class="jp_rightside_job_categories_heading">
-									<h4>Search</h4>
-								</div>
-								<div class="jp_blog_right_search_wrapper">
-									<input type="text" placeholder="Search" />
-									<button type="submit"><i class="fa fa-search"></i></button>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="jp_rightside_job_categories_wrapper jp_rightside_job_categories_wrapper2">
-								<div class="jp_rightside_job_categories_heading">
-									<h4>Categories</h4>
-								</div>
-								<div class="jp_rightside_job_categories_content">
-									<ul>
-										<li>
-											<i class="fa fa-long-arrow-right"></i> &nbsp;&nbsp;<a href="#">Packages</a>
-										</li>
-										<li>
-											<i class="fa fa-long-arrow-right"></i>
-											<a href="#"> &nbsp; &nbsp; Flights  </a>
-										</li>
-										<li>
-											<i class="fa fa-long-arrow-right"></i>
-											<a href="#"> &nbsp;&nbsp;Car Hire</a>
-										</li>
-										<li>
-											<i class="fa fa-long-arrow-right"></i>
-											<a href="#"> &nbsp;&nbsp;Gallery</a>
-										</li>
-                                        <li>
-											<i class="fa fa-long-arrow-right"></i>
-											<a href="#"> &nbsp;&nbsp;Blog</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-                        
-					</div>
-				</div>
-			</div>
+			<!-- sidebar -->
+			{% include 'includes/sidebar.html' %}
 			<div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
 				<div class="x_carbooking_right_section_wrapper float_left">
 					<div class="row">
-						<div class="col-md-12">
-							<a href="/blog/3">
-								<div class="x_car_access_right_price_main_box_wrapper float_left">
-									<div class="x_car_access_right_price_main_box_inner_left_wrapper">
-										<div class="x_car_access_right_price_img_wrapper">
-											<img src="{% static 'images/g1.png' %}" alt="g1_img" />
+						<div class="x_services_title_main_wrapper float_left padding_tb_10">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="x_offer_car_heading_wrapper x_offer_car_tb_heading_wrapper float_left">
+											<h4>Website summary</h4>
+											<h3>Dashboard</h3>
+											<!-- <p>Dashboard and Management console for Site Travel website</p> -->
 										</div>
-										<div class="x_car_access_right_price_img_cont_wrapper">
-											<h3>First Blog</h3>
+									</div>
+									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
+										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	<i class="flaticon-shopping-bag"></i>
+											<h3><a href="#">Packages</a></h3>
 											<p>
-												Lorem ipsum dolor sit amet, consectetur adipi Sicing elit.
+												group packages: {{group_packages}} <br>
+												custom packages: {{custom_packages}}
 											</p>
 										</div>
 									</div>
-									<div class="x_car_access_right_price_main_box_inner_right_wrapper">
-										<div class="x_car_acc_price_dollar_wrapper">
-											<h3>$25</h3>
-											<p>/ day</p>
+									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
+										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	<i class="fa-solid fa-bed"></i>
+											<h3><a href="#">Accomodation </a></h3>
+											<p>
+												budget	: {{ accom_budget }} <br>
+												mid-range: {{ accom_mid_range }} <br>
+												up-market: {{ accom_up_market }}
+											</p>
 										</div>
-										<div class="x_car_acc_price_dollar_count_wrapper">
-											<div class="quantity">
-												<input type="number" min="1" max="100" step="1" value="1" class="qty" />
-											</div>
+									</div>
+									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
+										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	<i class="flaticon-idea"></i>
+											<h3><a href="#">Flights</a></h3>
+											<p>
+												one-way tickets: {{ one_way_tickets }}  <br>
+												return tickets: {{ return_tickets }}
+											</p>
 										</div>
 									</div>
-								</div>
-							</a>
-							
-						</div>
-						<div class="col-md-12">
-							<div class="x_car_access_right_price_main_box_wrapper x_car_access_right_price_main_box_wrapper2 float_left">
-								<div class="x_car_access_right_price_main_box_inner_left_wrapper">
-									<div class="x_car_access_right_price_img_wrapper">
-										<img src="{% static 'images/g2.png' %}" alt="g1_img" />
+									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
+										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	<i class="flaticon-idea"></i>
+											<h3><a href="#">Car Bookings</a></h3>
+											<p>
+												budget	: {{ trans_budget }} <br>
+												mid-range: {{ trans_mid_range }} <br>
+												up-market: {{ trans_up_market }}
+											</p>
+										</div>
 									</div>
-									<div class="x_car_access_right_price_img_cont_wrapper">
-										<h3>Babyseat</h3>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipi Sicing elit.
-										</p>
+									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
+										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	<i class="flaticon-pencil-black-tool-interface-symbol"></i>
+											<h3><a href="#">Driver</a></h3>
+											<p>
+												Driver: {{ trans_driver }}  <br>
+												Own: {{ trans_self }} <br>
+											</p>
+										</div>
 									</div>
-								</div>
-								<div class="x_car_access_right_price_main_box_inner_right_wrapper">
-									<div class="x_car_acc_price_dollar_wrapper">
-										<h3>$55</h3>
-										<p>/ day</p>
+									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
+										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	<i class="flaticon-pencil-black-tool-interface-symbol"></i>
+											<h3><a href="#">Trip</a></h3>
+											<p>
+												town: {{ trans_town }} <br>
+												upcountry: {{ trans_upcountry }}
+											</p>
+										</div>
 									</div>
-									<div class="x_car_acc_price_dollar_count_wrapper">
-										<div class="quantity">
-											<input type="number" min="1" max="100" step="1" value="1" class="qty" />
+									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
+										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	<i class="flaticon-pencil-black-tool-interface-symbol"></i>
+											<h3><a href="#">Blog</a></h3>
+											<p>Draft: null <br>
+												Published: null</p>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					
-						
+
 						<div class="col-md-12">
 							<div class="x_car_acc_bottom_button float_left">
 								<p>

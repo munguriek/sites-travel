@@ -1100,7 +1100,7 @@ ul {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background: url(../images/sliders/1.jpeg) 50% 0 repeat-y;
+    background: url(../images/header/photos-1.jpg) 50% 0 repeat-y;
     position: relative;
     min-height: 800px;
 }
@@ -1111,7 +1111,7 @@ ul {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background: url(../images/sliders/2.jpeg) 50% 0 repeat-y;
+    background: url(../images/header/photos-2.jpg) 50% 0 repeat-y;
     position: relative;
     min-height: 800px;
 }
@@ -1122,7 +1122,7 @@ ul {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background: url(../images/slider3.jpg);
+    background: url(../images/header/photos-3.jpg);
     position: relative;
     min-height: 800px;
 }
