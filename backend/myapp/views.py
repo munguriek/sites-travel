@@ -1,7 +1,8 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from .models import Flight, Gallery, Package, Transport, Car, Ticket, Accomadation
 from . import *
 from django.contrib import messages
+from .forms import PackageForm
 
 
 # Create your views here.
@@ -105,11 +106,19 @@ def main(request):
     }
     return render(request, "admin/main.html", context) 
 
+
 def packages(request):
     packages = Package.objects.all()
-    messages.success(request, "Thanks") 
+
+    package_form = PackageForm(request.POST or None, request.FILES or None)
+    if package_form.is_valid():
+        instance = package_form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Package saved successfully')
+        return redirect('packages')
     context = {
         'packages': packages,
+        'package_form': package_form,
     }
     return render(request, "admin/packages.html", context)
 
