@@ -17,6 +17,10 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/xpedia.css' %}" />
 	<!--favicon-->
 	<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" />
+	<!-- datatables -->
+	<!-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css"> -->
+	<link rel="stylesheet" href="{% static 'vendor/simple-datatables/style.css' %}">
+
 </head>
 
 <body>
@@ -321,6 +325,13 @@
 			$(this).remove(); 
 		});
 		}, 2000);
+	</script>
+
+	<script src="{% static 'vendor/simple-datatables/simple-datatables.js' %}"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script> -->
+	<script>
+		let myTable = document.querySelector('#myTable');
+		let dataTable = new simpleDatatables.DataTable(myTable);
 	</script>
 
 	<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>

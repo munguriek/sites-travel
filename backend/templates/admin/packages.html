@@ -10,7 +10,7 @@
 		<div class="row">
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
 				<div class="btc_tittle_left_heading">
-					<h1>Dashboard</h1>
+					<h1>Packages</h1>
 				</div>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
@@ -21,7 +21,7 @@
 								<a href="{% url 'index' %}">Home</a>
 								<i class="fa fa-angle-right"></i>
 							</li>
-							<li>Admin Dashboard</li>
+							<li>Packages</li>
 						</ul>
 					</div>
 				</div>
@@ -32,58 +32,12 @@
 <!-- btc tittle Wrapper End -->
 
 
-<!-- x car book sidebar section Wrapper Start -->
+<!-- Packages Start -->
 <div class="x_blog_sidebar_main_wrapper float_left padding_tb_100">
 	<div class="container">
 		<div class="row">
-			<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-				<div class="x_blog_right_side_wrapper float_left">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="jp_rightside_job_categories_wrapper jp_blog_right_box_search">
-								<div class="jp_rightside_job_categories_heading">
-									<h4>Search</h4>
-								</div>
-								<div class="jp_blog_right_search_wrapper">
-									<input type="text" placeholder="Search" />
-									<button type="submit"><i class="fa fa-search"></i></button>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="jp_rightside_job_categories_wrapper jp_rightside_job_categories_wrapper2">
-								<div class="jp_rightside_job_categories_heading">
-									<h4>Categories</h4>
-								</div>
-								<div class="jp_rightside_job_categories_content">
-									<ul>
-										<li>
-											<i class="fa fa-long-arrow-right"></i> &nbsp;&nbsp;<a href="#">Packages</a>
-										</li>
-										<li>
-											<i class="fa fa-long-arrow-right"></i>
-											<a href="#"> &nbsp; &nbsp; Flights  </a>
-										</li>
-										<li>
-											<i class="fa fa-long-arrow-right"></i>
-											<a href="#"> &nbsp;&nbsp;Car Hire</a>
-										</li>
-										<li>
-											<i class="fa fa-long-arrow-right"></i>
-											<a href="#"> &nbsp;&nbsp;Gallery</a>
-										</li>
-                                        <li>
-											<i class="fa fa-long-arrow-right"></i>
-											<a href="#"> &nbsp;&nbsp;Blog</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-                        
-					</div>
-				</div>
-			</div>
+			<!-- sidebar -->
+			{% include 'includes/sidebar.html' %}
 			<div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
 				<div class="x_carbooking_right_section_wrapper float_left">
 					<div class="row">
@@ -92,93 +46,69 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="x_offer_car_heading_wrapper x_offer_car_tb_heading_wrapper float_left">
-											<h4>Website summary</h4>
-											<h3>Dashboard</h3>
+											<h4>All Packages</h4>
+											<h3>Packages</h3>
 											<!-- <p>Dashboard and Management console for Site Travel website</p> -->
 										</div>
 									</div>
-									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
-										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	<i class="flaticon-shopping-bag"></i>
-											<h3><a href="#">Packages</a></h3>
-											<p>
-												group packages: {{group_packages}} <br>
-												custom packages: {{custom_packages}}
-											</p>
-										</div>
+									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 full_width">
+									<table id="myTable" class="table table-bordered table-hover table-striped table-responsive">
+										<thead>
+											<tr>
+												<th >Package Type</th>
+												<th >Category</th>
+												<th >Destination</th>
+												<th >Price</th>
+												<th >Slots left</th>
+												<th >Start date</th>
+												<th>Booked by</th>
+											</tr>
+										</thead>
+										<tbody>
+											
+											{% for package  in packages  %}
+											<tr>
+												<td>{{package.type}}</td>
+												<td>{{package.category}}</td>
+												<td>{{package.destination}}</td>
+												<td>$ {{package.price}}</td>
+												<td>{{package.slots}}</td>
+												<td>{{package.start}}</td>
+												<td>{{package.first_name}} {{package.last_name}}</td>
+											</tr>
+											{% endfor %}
+
+											<!-- start = models.DateField()
+											end = models.DateField()
+											activities = models.CharField(max_length=200, choices=PACKAGE_TYPES)
+											arrival_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="arrival_accom")
+											trip_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="trip_accom")
+											pickup = models.CharField(max_length=100)
+											dropoff = models.CharField(max_length=100)
+											first_name = models.CharField(max_length=100)
+											last_name = models.CharField(max_length=100)
+											nationality = models.CharField(max_length=100)
+											telephone = models.CharField(max_length=20) -->
+												
+										</tbody>
+										</table>
 									</div>
-									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
-										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	<i class="fa-solid fa-bed"></i>
-											<h3><a href="#">Accomodation </a></h3>
-											<p>
-												budget	: {{ accom_budget }} <br>
-												mid-range: {{ accom_mid_range }} <br>
-												up-market: {{ accom_up_market }}
-											</p>
-										</div>
-									</div>
-									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
-										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	<i class="flaticon-idea"></i>
-											<h3><a href="#">Car Bookings</a></h3>
-											<p>
-												budget	: {{ trans_budget }} <br>
-												mid-range: {{ trans_mid_range }} <br>
-												up-market: {{ trans_up_market }}
-											</p>
-										</div>
-									</div>
-									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
-										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	<i class="flaticon-pencil-black-tool-interface-symbol"></i>
-											<h3><a href="#">Driver</a></h3>
-											<p>
-												Driver: {{ trans_driver }}  <br>
-												Own: {{ trans_self }} <br>
-											</p>
-										</div>
-									</div>
-									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
-										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	<i class="flaticon-pencil-black-tool-interface-symbol"></i>
-											<h3><a href="#">Trip</a></h3>
-											<p>
-												town: {{ trans_town }} <br>
-												upcountry: {{ trans_upcountry }}
-											</p>
-										</div>
-									</div>
-									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
-										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	<i class="flaticon-idea"></i>
-											<h3><a href="#">Flights</a></h3>
-											<p>
-												one-way tickets: {{ one_way_tickets }}  <br>
-												return tickets: {{ return_tickets }}
-											</p>
-										</div>
-									</div>
-									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
-										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	<i class="flaticon-pencil-black-tool-interface-symbol"></i>
-											<h3><a href="#">Blog</a></h3>
-											<p>Draft: null <br>
-												Published: null</p>
-										</div>
-									</div>
+									
 								</div>
 							</div>
 						</div>
 
-						<div class="col-md-12">
+						<!-- <div class="col-md-12">
 							<div class="x_car_acc_bottom_button float_left">
-								<p>
-									<i class="fa fa-info-circle"></i> &nbsp;Phasellus ornare, ante
-									vitae consectetuer consequat, purus sapien ultricies dolor.
-								</p>
-							
+								<p><i class="fa fa-info-circle"></i> &nbsp;Phasellus ornare, ante purus sa dolor.</p>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- x car book sidebar section Wrapper End -->
+<!-- Packages End -->
 
 {% endblock %}
