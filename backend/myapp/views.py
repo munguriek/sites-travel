@@ -40,7 +40,7 @@ def car_list(request):
 
 
 def gallery(request):
-    pictures = Gallery.objects.all()
+    pictures = Gallery.objects.filter(category="gallery")
 
     picture_form = GalleryForm(request.POST or None, request.FILES or None)
     if picture_form.is_valid():

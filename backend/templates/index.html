@@ -799,46 +799,21 @@
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="wrap-album-slider">
 							<ul class="album-slider">
+								{% if partners %}
+								{% for partner in partners %}
 								<li class="album-slider__item">
 									<figure class="album">
-										<img src="{% static 'images/partners/assoc.png' %}" alt="img">
+										{% if partner.picture %}
+											<img src="{{ partner.picture.url }}" style="width:91px; height:79px;" alt="img">
+										{% else %}
+											<!-- <p class="text-center">No partners yet</p> -->
+											<img src="{% static 'images/prt4.png' %}" style="width:91px; height:79px;" alt="img">
+
+										{% endif %}
 									</figure>
 								</li>
-								<li class="album-slider__item">
-									<figure class="album">
-										<img src="{% static 'images/partners/eatp.png' %}" alt="img">
-									</figure>
-								</li>
-								<li class="album-slider__item">
-									<figure class="album">
-										<img src="{% static 'images/partners/iata.png' %}" alt="img">
-									</figure>
-								</li>
-								<li class="album-slider__item">
-									<figure class="album">
-										<img src="{% static 'images/partners/safari.jpg' %}" alt="img">
-									</figure>
-								</li>
-								<li class="album-slider__item">
-									<figure class="album">
-										<img src="{% static 'images/partners/ugata.png' %}" alt="img">
-									</figure>
-								</li>
-								<li class="album-slider__item">
-									<figure class="album">
-										<img src="{% static 'images/partners/uta.png' %}" alt="img">
-									</figure>
-								</li>
-								<li class="album-slider__item">
-									<figure class="album">
-										<img src="{% static 'images/partners/utb.png' %}" alt="img">
-									</figure>
-								</li>
-								<li class="album-slider__item">
-									<figure class="album">
-										<img src="{% static 'images/partners/uwa.jpeg' %}" alt="img">
-									</figure>
-								</li>
+								{% endfor %}
+								{% endif %}
 							</ul>
 						</div>
 					</div>

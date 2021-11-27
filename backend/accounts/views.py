@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from myapp.models import Accomadation, Package, Transport, Ticket
 from django.contrib import messages
+from myapp.models import Gallery
 
 # Create your views here.
 def error_404(request, exception):
@@ -13,7 +14,8 @@ def error_500(request):
 
 
 def index(request):
-    context = {}
+    partners = Gallery.objects.filter(category="partner")
+    context = {"partners": partners}
     return render(request, "index.html", context)
 
 

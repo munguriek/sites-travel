@@ -9,11 +9,27 @@ from django.forms import Form, ModelForm, DateField, widgets
 
 class PackageForm(forms.ModelForm):
     category = forms.ModelChoiceField(queryset=PackageCategory.objects.all(), empty_label='Select package category')
-    # type = forms.CharField(widget= forms.TextInput(attrs={'placeholder':'Enter type'}))
+    destination = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Trip destination'}))
+    arrival_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation on arrival')
+    trip_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation at trip destination')
+    pickup = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Pickup location'}))
+    dropoff = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Drop off location'}))
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your first name'}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your last name'}))
+    nationality = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your nationality'}))
+    telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your phone number'}))
+
 
     def __init__(self, *args, **kwargs):
         super(PackageForm, self).__init__(*args, **kwargs)
         self.fields['type'].label = "Package type"
+        self.fields['destination'].label = "Trip destination"
+        self.fields['image'].label = "Upload image(formats .png, .jpeg, jpg)"
+        self.fields['slots'].placeholder = "Number of slots"
+        self.fields['start'].label = "Start date of trip"
+        self.fields['end'].label = "Start date of trip"
+        self.fields['price'].placeholder = "Price(in Dollars)"
+
 
     def clean_date(self):
         date = self.cleaned_data['date']
@@ -32,10 +48,13 @@ class PackageForm(forms.ModelForm):
 
 
 class FlightForm(forms.ModelForm):
+    start = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Start location of flight '}))
+    destination = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Destination of flight'}))
+    price = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Price of flight'}))
 
     def __init__(self, *args, **kwargs):
         super(FlightForm, self).__init__(*args, **kwargs)
-        # self.fields['batch'].label = "Batch number"
+        self.fields['image'].label = "Upload image (formats .png, .jpeg, jpg)"
 
     class Meta:
         model = Flight
@@ -44,10 +63,12 @@ class FlightForm(forms.ModelForm):
 
 
 class CarForm(forms.ModelForm):
+    make = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Make of car eg toyota'}))
 
     def __init__(self, *args, **kwargs):
         super(CarForm, self).__init__(*args, **kwargs)
-        # self.fields['batch'].label = "Batch number"
+        self.fields['image'].label = "Upload image (formats .png, .jpeg, jpg)"
+
     class Meta:
         model = Car
         fields = '__all__'
@@ -55,10 +76,11 @@ class CarForm(forms.ModelForm):
      
 
 class GalleryForm(forms.ModelForm):
+    caption = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Caption uploaded image'}))
 
     def __init__(self, *args, **kwargs):
         super(GalleryForm, self).__init__(*args, **kwargs)
-        # self.fields['batch'].label = "Batch number"
+        self.fields['picture'].label = "Upload image (formats .png, .jpeg, jpg)"
     class Meta:
         model = Gallery
         fields = '__all__'

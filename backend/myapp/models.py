@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields.files import ImageField
 
 
 BUDGET = (
@@ -74,15 +75,15 @@ PACKAGE_TYPES = (
 )
 class Package(models.Model):
     """Slots for group are read only, for custom is number of editable """
-    type = models.CharField(max_length=100, choices=PACKAGE_TYPES)
+    type = models.CharField(max_length=100, choices=PACKAGE_TYPES, default="group")
     category = models.ForeignKey(PackageCategory, on_delete=models.CASCADE)
     destination = models.CharField(max_length=100)
     image = models.ImageField(upload_to="package")
     slots = models.PositiveIntegerField(default=0)
     start = models.DateField()
     end = models.DateField()
-    price = models.PositiveIntegerField()
-    activities = models.CharField(max_length=200, choices=PACKAGE_TYPES)
+    price = models.PositiveIntegerField(default=0)
+    # activities = models.CharField(max_length=200, choices=PACKAGE_TYPES)
     arrival_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="arrival_accom")
     trip_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="trip_accom")
     pickup = models.CharField(max_length=100)
@@ -138,10 +139,16 @@ class Ticket(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.flight}"
 
-
+IMAGE_CATEGORY = (
+    ('gallery', 'gallery'),
+    ('partner', 'partner'),
+)
 class Gallery(models.Model):
     picture = models.ImageField(upload_to="gallery")
-    caption = models.CharField(max_length=80)
+    category = models.CharField(max_length=50, choices=IMAGE_CATEGORY, default='gallery')
+    caption = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return f"{self.caption}"
+
+

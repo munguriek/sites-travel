@@ -87,9 +87,9 @@
 								<div class="btc_team_slider_cont_main_wrapper">
 									<div class="btc_team_img_wrapper">
 										{% if pic.picture %}
-										<img src="{{pic.picture.url}}" alt="image">
+										<img src="{{pic.picture.url}}" style="width:370px; height:330px;" alt="image">
 										{% else %}
-											<p class="text-center">image</p>
+										<img src="{% static 'images/tb1.jpg' %}" alt="gallery images">
 										{% endif %}
 										<!-- <div class="btc_team_social_wrapper">
 											<ul>
