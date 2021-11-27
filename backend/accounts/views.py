@@ -14,8 +14,13 @@ def error_500(request):
 
 
 def index(request):
-    partners = Gallery.objects.filter(category="partner")
-    context = {"partners": partners}
+    pictures = Gallery.objects.all()
+    partners = pictures.filter(category="partner")
+    banners = pictures.filter(category="gallery")
+    context = {
+            "partners": partners,
+            "banners": banners,
+    }
     return render(request, "index.html", context)
 
 

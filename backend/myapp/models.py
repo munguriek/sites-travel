@@ -31,7 +31,7 @@ class PackageCategory(models.Model):
         return f"{self.name}"
 
 class Activity(models.Model):
-    """Prepopulate into package, eg culture site vist."""
+    """Prepopulate into package, eg culture sAccomadationite vist."""
     package = models.ForeignKey(PackageCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
 
@@ -86,18 +86,27 @@ class Package(models.Model):
     # activities = models.CharField(max_length=200, choices=PACKAGE_TYPES)
     arrival_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="arrival_accom")
     trip_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="trip_accom")
-    pickup = models.CharField(max_length=100)
-    dropoff = models.CharField(max_length=100)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    nationality = models.CharField(max_length=100)
-    telephone = models.CharField(max_length=20)
 
     class Meta :
        ordering = ['-id']
 
     def __str__(self):
-        return f"{self.type} "
+        return f"{self.type}"
+
+
+class Booking(models.Model):
+    package = models.ForeignKey(Package, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    nationality = models.CharField(max_length=100)
+    telephone = models.CharField(max_length=20)
+    pickup = models.CharField(max_length=100)
+    dropoff = models.CharField(max_length=100)
+    slots = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.type}"
 
 
 class Flight(models.Model):
