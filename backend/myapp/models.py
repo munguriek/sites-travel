@@ -68,8 +68,9 @@ class CarHire(models.Model):
     """Prepopulate into package."""
     budget = models.CharField(max_length=100, choices=BUDGET)
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    driven_by = models.CharField(max_length=40, choices=DRIVER, default='driver')
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
-    trip = models.CharField(max_length=100, choices=TRIP)
+    trip = models.CharField(max_length=100, choices=TRIP, default="up country")
     pickup = models.CharField(max_length=100)
     dropoff = models.CharField(max_length=100)
     start = models.DateField()
@@ -133,7 +134,7 @@ class Booking(models.Model):
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE, null=True)
     car_hire = models.ForeignKey(CarHire, on_delete=models.CASCADE, null=True)
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE, null=True)
-    flight_type = models.CharField(max_length=30, choices=TICKET_TYPE) # For flight
+    flight_type = models.CharField(max_length=30, choices=TICKET_TYPE, default='one way') # For flight
     departure_date = models.DateField(max_length=100, null=True) # For flight
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
