@@ -12,6 +12,9 @@ urlpatterns = [
     path('flight_detail/<str:pk>', views.flight_detail, name='flight_detail'),
 
     path('car_list', views.car_list, name='car_list'),
+    path('car_detail/<str:pk>', views.car_detail, name='car_detail'),
+    path('carhire_detail/<str:pk>', views.carhire_detail, name='carhire_detail'),
+
     path('gallery', views.gallery, name='gallery'),
     path('blogs', views.blog_list, name='blog_list'),
     path('blog/3', views.blog_detail, name='blog_detail'),    

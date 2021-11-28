@@ -66,9 +66,9 @@ TRIP = (
 )
 class CarHire(models.Model):
     """Prepopulate into package."""
-    budget = models.CharField(max_length=100, choices=BUDGET)
+    budget = models.CharField(max_length=100, choices=BUDGET, default='budget')
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
-    driven_by = models.CharField(max_length=40, choices=DRIVER, default='driver')
+    driven_by = models.CharField(max_length=40, choices=DRIVER, default='driver', null=True)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     trip = models.CharField(max_length=100, choices=TRIP, default="up country")
     pickup = models.CharField(max_length=100)

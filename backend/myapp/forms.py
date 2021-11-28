@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.forms import ModelForm, DateInput
-from .models import Accomadation, Activity, Booking, Car, Flight, Gallery, Trip, PackageCategory, CarHire
+from .models import Accomadation, Activity, Booking, Car, Driver, Flight, Gallery, Trip, PackageCategory, CarHire
 import datetime
 from django.forms import Form, ModelForm, DateField, widgets
 
@@ -148,6 +148,26 @@ class FlightBookingForm(forms.ModelForm):
         } 
 
 
+class CarBookingForm(forms.ModelForm):
+    car = forms.ModelChoiceField(queryset=Car.objects.all(), empty_label='Select car')
+    driver = forms.ModelChoiceField(queryset=Driver.objects.all(), empty_label='Select either one of our drivers or self')
+    pickup = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your pickup  location'}))
+    dropoff = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your drop off location'}))
+
+    def __init__(self, *args, **kwargs):
+        super(CarBookingForm, self).__init__(*args, **kwargs)
+        # self.fields['trip'].label = "Upload image (formats .png, .jpeg, jpg)"
+        # self.fields['trip'].disabled = True 
+        
+    class Meta:
+        model = CarHire
+        fields = '__all__'
+        exclude = ('id', 'driven_by')
+        widgets = {
+            'start': widgets.DateInput(attrs={'type': 'date'}),
+            'end': widgets.DateInput(attrs={'type': 'date'}),
+        }
+
 class CarHireBookingForm(forms.ModelForm):
     first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your first name'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your last name'}))
@@ -156,15 +176,14 @@ class CarHireBookingForm(forms.ModelForm):
     nationality = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your nationality'}))
     pickup = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter location we can pick you for the trip'}))
     dropoff = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter a location we can drop you after trip'}))
-    slots = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter number of trip participants'}))
 
     def __init__(self, *args, **kwargs):
         super(CarHireBookingForm, self).__init__(*args, **kwargs)
         # self.fields['trip'].label = "Upload image (formats .png, .jpeg, jpg)"
-        self.fields['trip'].disabled = True 
-        self.fields['service'].disabled = True 
+        # self.fields['trip'].disabled = True 
+        # self.fields['service'].disabled = True 
         
     class Meta:
         model = Booking
         fields = '__all__'
-        exclude = ('id', 'car_hire', 'flight', 'flight_type', 'departure_date', 'adults', 'children', 'infants')
+        exclude = ('flight', 'trip', 'flight_type', 'departure_date', 'slots', 'adults', 'children', 'infants')

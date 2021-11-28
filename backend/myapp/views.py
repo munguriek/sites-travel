@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Flight, Gallery, Trip, Car, CarHire, Accomadation, Booking
-from .forms import (TripForm, FlightForm, CarForm, GalleryForm, BookingForm, GoupTripBookingForm, 
+from .forms import (CarBookingForm, TripForm, FlightForm, CarForm, GalleryForm, BookingForm, GoupTripBookingForm, 
     FlightBookingForm, CarHireBookingForm) 
 # CarForm, AccomadationForm
 from . import *
@@ -68,7 +68,44 @@ def car_list(request):
     cars = Car.objects.all()
     car_hire = CarHire.objects.all()
     context = {"cars": cars}
-    return render(request, "cars.html", context)
+    return render(request, "car-list.html", context)
+
+
+def car_detail(request, pk):
+    car = get_object_or_404(Car, pk=pk)
+    print(car)
+    carh = CarHire.objects.filter(car=car)
+    print(carh)
+
+    booking_form = CarBookingForm(request.POST or None, request.FILES or None, 
+        initial={"service": "car hire", "car": car })
+    if booking_form.is_valid():
+        instance = booking_form.save(commit=False)
+        instance.save()       
+        messages.success(request, 'Car details registered successfully')
+        return redirect('carhire_detail', car.id )
+    context = {
+        'car': car,
+        'booking_form': booking_form,
+    }
+    return render(request, "car-detail.html", context)
+
+
+def carhire_detail(request, pk):
+    car = get_object_or_404(Car, pk=pk)
+
+    booking_form = CarHireBookingForm(request.POST or None, request.FILES or None, 
+        initial={"service": "car hire", "car": car })
+    if booking_form.is_valid():
+        instance = booking_form.save(commit=False)
+        instance.save()       
+        messages.success(request, 'Car hire registered successfully')
+        return redirect('car_list')
+    context = {
+        'car': car,
+        'booking_form': booking_form,
+    }
+    return render(request, "car-detail.html", context)
 
 
 def gallery(request):
@@ -193,5 +230,8 @@ def cars(request):
         'car_form': car_form,
     }
     return render(request, "admin/cars.html", context)
+
+
+
 
 

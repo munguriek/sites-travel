@@ -18,8 +18,8 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="x_offer_car_heading_wrapper x_offer_car_tb_heading_wrapper float_left">
-												<h4>Flight Ticketting</h4>
-												<h3>Flight Ticketing</h3>
+												<h4>Services we offer</h4>
+												<h3>Car Hire</h3>
 												<!-- <p>Dashboard and Management console for Site Travel website</p> -->
 											</div>
 										</div>
@@ -30,10 +30,10 @@
 							<!-- Package title -->
 							<div class="col-md-12 my-4">
 								<div class="card">
-									<h5 class="card-header">Flight Details</h5>
+									<h5 class="card-header">Car Details</h5>
 									<div class="card-body">
 									  <!-- <h5 class="card-title">Special title treatment</h5> -->
-									  <p class="card-text">Flight: {{ flight.start |title }} to {{ flight.destination |title }} </p>
+									  <p class="card-text">Car Make: {{ car.make |title }} </p>
 									</div>
 								  </div>
 							</div>
@@ -46,7 +46,7 @@
 											{% csrf_token %}
 											{{ booking_form |crispy }}
 											<div class="float-right my-2">
-												<a href="{% url 'flight_list' %}" class="btn btn-secondary mx-2">Cancel</a>
+												<a href="{% url 'car_list' %}" class="btn btn-secondary mx-2">Cancel</a>
 												<button type="submit" class="btn btn-primary">Save</button>
 											</div>										  
 										</form>
