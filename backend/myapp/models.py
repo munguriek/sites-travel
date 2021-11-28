@@ -38,12 +38,22 @@ class Activity(models.Model):
     def __str__(self):
         return f"{self.name}"
 
+
 class Car(models.Model):
     make = models.CharField(max_length=100)
     image = models.ImageField(upload_to="cars")
 
     def __str__(self):
         return f"{self.make}"
+
+
+class Driver(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    photo = models.ImageField(upload_to="cars")
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
 
 DRIVER = (
@@ -54,11 +64,11 @@ TRIP = (
     ('up country', 'up country'),
     ('town service', 'town service'),
 )
-class Transport(models.Model):
+class CarHire(models.Model):
     """Prepopulate into package."""
     budget = models.CharField(max_length=100, choices=BUDGET)
-    car = models.CharField(max_length=100)
-    driver = models.CharField(max_length=100, choices=DRIVER)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     trip = models.CharField(max_length=100, choices=TRIP)
     pickup = models.CharField(max_length=100)
     dropoff = models.CharField(max_length=100)
@@ -73,7 +83,7 @@ PACKAGE_TYPES = (
     ('group', 'group'),
     ('custom', 'custom'),
 )
-class Package(models.Model):
+class Trip(models.Model):
     """Slots for group are read only, for custom is number of editable """
     type = models.CharField(max_length=100, choices=PACKAGE_TYPES, default="group")
     category = models.ForeignKey(PackageCategory, on_delete=models.CASCADE)
@@ -91,22 +101,7 @@ class Package(models.Model):
        ordering = ['-id']
 
     def __str__(self):
-        return f"{self.type}"
-
-
-class Booking(models.Model):
-    package = models.ForeignKey(Package, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField()
-    nationality = models.CharField(max_length=100)
-    telephone = models.CharField(max_length=20)
-    pickup = models.CharField(max_length=100)
-    dropoff = models.CharField(max_length=100)
-    slots = models.PositiveIntegerField(default=0)
-
-    def __str__(self):
-        return f"{self.type}"
+        return f"{self.type} trip - {self.destination}"
 
 
 class Flight(models.Model):
@@ -118,10 +113,6 @@ class Flight(models.Model):
     class Meta :
        ordering = ['-id']
 
-    # def all_verified(self):
-    #     print(self.approved)
-    #     return self.approved
-
     def __str__(self):
         return f"{self.start} - {self.destination}"
 
@@ -130,23 +121,35 @@ TICKET_TYPE = (
     ('one way', 'one way'),
     ('return', 'return'),
 )
-class Ticket(models.Model):
-    flight = models.ForeignKey(Flight, on_delete=models.CASCADE)
-    type = models.CharField(max_length=30, choices=TICKET_TYPE)
+
+
+SERVICE = (
+    ('trip', 'trip'),
+    ('flight', 'flight'),
+    ('car hire', 'car hire'),
+)
+class Booking(models.Model):
+    service = models.CharField(max_length=50, choices=SERVICE, default="trip")
+    trip = models.ForeignKey(Trip, on_delete=models.CASCADE, null=True)
+    car_hire = models.ForeignKey(CarHire, on_delete=models.CASCADE, null=True)
+    flight = models.ForeignKey(Flight, on_delete=models.CASCADE, null=True)
+    flight_type = models.CharField(max_length=30, choices=TICKET_TYPE) # For flight
+    departure_date = models.DateField(max_length=100, null=True) # For flight
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
+    nationality = models.CharField(max_length=100)
     telephone = models.CharField(max_length=20)
-    departure_date = models.DateField(max_length=100)
-    adults = models.PositiveIntegerField()
-    children = models.PositiveIntegerField()
-    infants = models.PositiveIntegerField()
-
-    class Meta :
-       ordering = ['-id']
+    pickup = models.CharField(max_length=100)
+    dropoff = models.CharField(max_length=100)
+    slots = models.PositiveIntegerField(default=0)
+    adults = models.PositiveIntegerField(default=0) # For flight
+    children = models.PositiveIntegerField(default=0) # For flight
+    infants = models.PositiveIntegerField(default=0) # For flight    
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name} - {self.flight}"
+        return f"{self.service} by {self.first_name} {self.last_name}"
+
 
 IMAGE_CATEGORY = (
     ('gallery', 'gallery'),
@@ -159,5 +162,6 @@ class Gallery(models.Model):
 
     def __str__(self):
         return f"{self.caption}"
+
 
 

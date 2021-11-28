@@ -3,10 +3,11 @@ from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
-    path('group', views.group_packages, name='group'),
-    path('custom', views.custom_packages, name='custom'),
+    path('group', views.group_trips, name='group_trips'),
+    path('group/<int:pk>', views.group_trip, name='group_trip'),
+
+    path('custom', views.custom_trips, name='custom'),
     path('flight_list', views.flight_list, name='flight_list'),
-    path('ticket', views.ticketing, name='ticketing'),
     path('car_list', views.car_list, name='car_list'),
     path('gallery', views.gallery, name='gallery'),
     path('blogs', views.blog_list, name='blog_list'),

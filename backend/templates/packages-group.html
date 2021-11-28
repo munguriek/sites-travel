@@ -45,23 +45,28 @@
 					</div>
 				</div>
 				
-				{% if group_packages %}
-				{% for package in group_packages %}
+				{% if group_trips %}
+				{% for trip in group_trips %}
 				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
 					<div class="btc_team_bot_cont_main_wrapper">
 						<div class="btc_team_img_bot_wrapper">
-							{% if package.image %}
-							<img src="{{package.image.url}}" alt="tour image">
+							{% if trip.image %}
+							<img src="{{trip.image.url}}" alt="tour image">
 							{% else %}
 							<img src="{% static 'images/tb1.jpg' %}" alt="tour image">
 							{% endif %}
 							<div class="btc_team_social_tb_wrapper">
-								<h3>{{package.slots}} slot left</h3>
+								<h3>{{trip.slots}} slot left </h3> 
 							</div>
 						</div>
 						<div class="btc_team_img_bot_cont_wrapper">
-							<h4><a href="#">2 days at {{package.destination}}</a></h4>
-							<p>$ {{package.price |intcomma }}</p>
+							<h4><a href="#">2 days at {{trip.destination}}</a></h4>
+							<p>$ {{trip.price |intcomma }}</p> 
+							{% if trip.slots == 0 %}
+								<p class="text-center text-dark">No slots left</p>
+							{% else %}
+								<a href="{% url 'group_trip' trip.id %}" class="btn btn-dark btn-sm mt-2">Book</a>
+							{% endif %}
 						</div>
 					</div>
 				</div>

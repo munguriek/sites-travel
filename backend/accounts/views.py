@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from myapp.models import Accomadation, Package, Transport, Ticket
+from myapp.models import Accomadation, Trip
 from django.contrib import messages
 from myapp.models import Gallery
 

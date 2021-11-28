@@ -2,12 +2,12 @@ from django import forms
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.forms import ModelForm, DateInput
-from .models import Accomadation, Activity, Car, Flight, Gallery, Package, PackageCategory, Ticket, Transport
+from .models import Accomadation, Activity, Booking, Car, Flight, Gallery, Trip, PackageCategory, CarHire
 import datetime
 from django.forms import Form, ModelForm, DateField, widgets
 
 
-class PackageForm(forms.ModelForm):
+class TripForm(forms.ModelForm):
     category = forms.ModelChoiceField(queryset=PackageCategory.objects.all(), empty_label='Select package category')
     destination = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Trip destination'}))
     arrival_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation on arrival')
@@ -21,7 +21,7 @@ class PackageForm(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        super(PackageForm, self).__init__(*args, **kwargs)
+        super(TripForm, self).__init__(*args, **kwargs)
         self.fields['type'].label = "Package type"
         self.fields['destination'].label = "Trip destination"
         self.fields['image'].label = "Upload image(formats .png, .jpeg, jpg)"
@@ -38,7 +38,7 @@ class PackageForm(forms.ModelForm):
         return date
 
     class Meta:
-        model = Package
+        model = Trip
         fields = '__all__'
         exclude = ('id', )   
         widgets = {
@@ -85,4 +85,46 @@ class GalleryForm(forms.ModelForm):
         model = Gallery
         fields = '__all__'
         exclude = ('id', )   
+
+
+class BookingForm(forms.ModelForm):
+    arrival_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select')
+    # title = forms.CharField(initial = "Method 2 ")
+
+    # caption = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Caption uploaded image'}))
+
+    def __init__(self, *args, **kwargs):
+        super(BookingForm, self).__init__(*args, **kwargs)
+        # self.fields['picture'].label = "Upload image (formats .png, .jpeg, jpg)"
+    class Meta:
+        model = Booking
+        fields = '__all__'
+        exclude = ('id', )
+        
+
+
+class GoupTripBookingForm(forms.ModelForm):
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your first name'}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your last name'}))
+    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your email address'}))
+    telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your telephone number eg +25677125478511'}))
+    nationality = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your nationality'}))
+    pickup = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter location we can pick you for the trip'}))
+    dropoff = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter a location we can drop you after trip'}))
+    slots = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter number of trip participants'}))
+
+    def __init__(self, *args, **kwargs):
+        super(GoupTripBookingForm, self).__init__(*args, **kwargs)
+        # self.fields['trip'].label = "Upload image (formats .png, .jpeg, jpg)"
+        self.fields['trip'].disabled = True 
+        self.fields['service'].disabled = True 
+        
+
+    class Meta:
+        model = Booking
+        fields = '__all__'
+        exclude = ('id', 'car_hire', 'flight', 'flight_type', 'departure_date', 'adults', 'children', 'infants')
+        # widgets = {
+        # 'trip': forms.TextInput(attrs={'readonly': 'readonly'}),
+        # }
      
