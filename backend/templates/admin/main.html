@@ -51,13 +51,21 @@
 											<!-- <p>Dashboard and Management console for Site Travel website</p> -->
 										</div>
 									</div>
+									<div class="col-md-12">
+										<div class="x_car_acc_bottom_button float_left">
+											<p><i class="fa fa-info-circle"></i> {{latest_booking.full_name |title }} booked a {{latest_booking.service}}  {{latest_booking.time_booked |timesince }}</p>
+											<!-- <p>
+												<i class="fa fa-info-circle"></i> 2 Bookings starting Today
+										 		<span class="mx-4 px-5"><i class="fa fa-info-circle "></i> 1  Bookings starting Tomorrow</span>  
+											</p> -->
+										</div>
+									</div>
 									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
 										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	<i class="flaticon-shopping-bag"></i>
 											<h3><a href="#">Trips</a></h3>
 											<p>
 												group packages: {{group_trips}} <br>
 												custom packages: {{custom_trips}}
-												
 											</p>
 										</div>
 									</div>
@@ -77,16 +85,6 @@
 											<p>
 												one-way tickets: {{ oneway_tickets }}  <br>
 												return tickets: {{ return_tickets }}
-											</p>
-										</div>
-									</div>
-									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
-										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	<i class="flaticon-idea"></i>
-											<h3><a href="#">Car Bookings</a></h3>
-											<p>
-												budget	: {{ carhire_budget }} <br>
-												mid-range: {{ carhire_midrange }} <br>
-												up-market: {{ carhire_upmarket }}
 											</p>
 										</div>
 									</div>
@@ -116,16 +114,6 @@
 										</div>
 									</div>
 								</div>
-							</div>
-						</div>
-
-						<div class="col-md-12">
-							<div class="x_car_acc_bottom_button float_left">
-								<p>
-									<i class="fa fa-info-circle"></i> &nbsp;Phasellus ornare, ante
-									vitae consectetuer consequat, purus sapien ultricies dolor.
-								</p>
-							
 							</div>
 						</div>
 					</div>

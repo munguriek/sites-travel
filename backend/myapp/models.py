@@ -54,6 +54,7 @@ class Car(models.Model):
     image = models.ImageField(upload_to="cars")
     category = models.CharField(max_length=50, choices=CAR_CATEGORY)
     rating = models.PositiveIntegerField(default=0)
+    capacity = models.PositiveIntegerField(default=3)
 
     def __str__(self):
         return f"{self.make}"
@@ -144,7 +145,10 @@ class Booking(models.Model):
     infants = models.PositiveIntegerField(default=0) # For flight    
     driven_by = models.CharField(max_length=40, choices=DRIVER, default='driver', null=True) # For car hire
     carhire_trip = models.CharField(max_length=100, choices=TRIP, default="up country") # For car hire
+    time_booked = models.DateTimeField(auto_now_add=True)
 
+    class Meta :
+       ordering = ['-time_booked']
 
     def __str__(self):
         return f"{self.full_name} booked {self.service}"

@@ -23,7 +23,6 @@ urlpatterns = [
     path('packages', views.packages, name='packages'),
     path('flights', views.flights, name='flights'),
     path('cars', views.cars, name='cars'),
-
-
+    path('bookings', views.bookings, name='bookings'),
 
 ]
