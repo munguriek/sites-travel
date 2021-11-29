@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields.files import ImageField
 
 
 BUDGET = (
@@ -30,73 +31,69 @@ class PackageCategory(models.Model):
         return f"{self.name}"
 
 class Activity(models.Model):
-    """Prepopulate into package, eg culture site vist."""
+    """Prepopulate into package, eg culture sAccomadationite vist."""
     package = models.ForeignKey(PackageCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
 
     def __str__(self):
         return f"{self.name}"
 
+
+CAR_CATEGORY = (
+    ('executive', 'executive'),
+    ('4x4', '4x4'),
+    ('safari', 'safari'),
+    ('vans', 'vans'),
+    ('salon', 'salon'),
+    ('buses', 'buses'),
+    ('pickups', 'pickups'),
+    ('trucks', 'trucks'),
+)
 class Car(models.Model):
     make = models.CharField(max_length=100)
     image = models.ImageField(upload_to="cars")
+    category = models.CharField(max_length=50, choices=CAR_CATEGORY)
+    rating = models.PositiveIntegerField(default=0)
+    capacity = models.PositiveIntegerField(default=3)
 
     def __str__(self):
         return f"{self.make}"
 
 
-DRIVER = (
-    ('driver', 'driver'),
-    ('self', 'self'),
-)
-TRIP = (
-    ('up country', 'up country'),
-    ('town service', 'town service'),
-)
-class Transport(models.Model):
-    """Prepopulate into package."""
-    budget = models.CharField(max_length=100, choices=BUDGET)
-    car = models.CharField(max_length=100)
-    driver = models.CharField(max_length=100, choices=DRIVER)
-    trip = models.CharField(max_length=100, choices=TRIP)
-    pickup = models.CharField(max_length=100)
-    dropoff = models.CharField(max_length=100)
-    start = models.DateField()
-    end = models.DateField()
+class Driver(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    photo = models.ImageField(upload_to="cars")
 
     def __str__(self):
-        return f"{self.car}"
+        return f"{self.first_name} {self.last_name}"
 
 
 PACKAGE_TYPES = (
     ('group', 'group'),
     ('custom', 'custom'),
 )
-class Package(models.Model):
+class Trip(models.Model):
     """Slots for group are read only, for custom is number of editable """
-    type = models.CharField(max_length=100, choices=PACKAGE_TYPES)
+    type = models.CharField(max_length=100, choices=PACKAGE_TYPES, default="group")
     category = models.ForeignKey(PackageCategory, on_delete=models.CASCADE)
     destination = models.CharField(max_length=100)
     image = models.ImageField(upload_to="package")
     slots = models.PositiveIntegerField(default=0)
     start = models.DateField()
     end = models.DateField()
-    price = models.PositiveIntegerField()
-    activities = models.CharField(max_length=200, choices=PACKAGE_TYPES)
+    price = models.PositiveIntegerField(default=0)
+    # activities = models.CharField(max_length=200, choices=PACKAGE_TYPES)
     arrival_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="arrival_accom")
     trip_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="trip_accom")
-    pickup = models.CharField(max_length=100)
-    dropoff = models.CharField(max_length=100)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    nationality = models.CharField(max_length=100)
-    telephone = models.CharField(max_length=20)
+
+    # def depleted_slots:
 
     class Meta :
        ordering = ['-id']
 
     def __str__(self):
-        return f"{self.type} "
+        return f"{self.type} trip - {self.destination}"
 
 
 class Flight(models.Model):
@@ -108,10 +105,6 @@ class Flight(models.Model):
     class Meta :
        ordering = ['-id']
 
-    # def all_verified(self):
-    #     print(self.approved)
-    #     return self.approved
-
     def __str__(self):
         return f"{self.start} - {self.destination}"
 
@@ -120,28 +113,60 @@ TICKET_TYPE = (
     ('one way', 'one way'),
     ('return', 'return'),
 )
-class Ticket(models.Model):
-    flight = models.ForeignKey(Flight, on_delete=models.CASCADE)
-    type = models.CharField(max_length=30, choices=TICKET_TYPE)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+SERVICE = (
+    ('trip', 'trip'),
+    ('flight', 'flight'),
+    ('car hire', 'car hire'),
+)
+DRIVER = (
+    ('driver', 'our driver'),
+    ('self', 'self'),
+)
+TRIP = (
+    ('up country', 'up country'),
+    ('town service', 'town service'),
+)
+class Booking(models.Model):
+    service = models.CharField(max_length=50, choices=SERVICE, default="trip")
+    trip = models.ForeignKey(Trip, on_delete=models.CASCADE, null=True)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name="car_booking", null=True) # For car hire
+    flight = models.ForeignKey(Flight, on_delete=models.CASCADE, null=True)
+    flight_type = models.CharField(max_length=30, choices=TICKET_TYPE, default='one way') # For flight
+    departure_date = models.DateField(max_length=100, null=True) # For flight
+    full_name = models.CharField(max_length=100)
     email = models.EmailField()
+    nationality = models.CharField(max_length=100)
     telephone = models.CharField(max_length=20)
-    departure_date = models.DateField(max_length=100)
-    adults = models.PositiveIntegerField()
-    children = models.PositiveIntegerField()
-    infants = models.PositiveIntegerField()
+    pickup = models.CharField(max_length=100)
+    dropoff = models.CharField(max_length=100)
+    start = models.DateField() # For trips, car hire
+    end = models.DateField() # For trips, car hire    
+    slots = models.PositiveIntegerField(default=0)
+    adults = models.PositiveIntegerField(default=0) # For flight
+    children = models.PositiveIntegerField(default=0) # For flight
+    infants = models.PositiveIntegerField(default=0) # For flight    
+    driven_by = models.CharField(max_length=40, choices=DRIVER, default='driver', null=True) # For car hire
+    carhire_trip = models.CharField(max_length=100, choices=TRIP, default="up country") # For car hire
+    time_booked = models.DateTimeField(auto_now_add=True)
 
     class Meta :
-       ordering = ['-id']
+       ordering = ['-time_booked']
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name} - {self.flight}"
+        return f"{self.full_name} booked {self.service}"
 
 
+IMAGE_CATEGORY = (
+    ('gallery', 'gallery'),
+    ('partner', 'partner'),
+)
 class Gallery(models.Model):
     picture = models.ImageField(upload_to="gallery")
-    caption = models.CharField(max_length=80)
+    category = models.CharField(max_length=50, choices=IMAGE_CATEGORY, default='gallery')
+    caption = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return f"{self.caption}"
+
+
+

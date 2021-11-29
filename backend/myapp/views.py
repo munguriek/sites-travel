@@ -1,22 +1,43 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Flight, Gallery, Package, Transport, Car, Ticket, Accomadation
-from .forms import PackageForm, FlightForm, CarForm, GalleryForm
-# TransportForm, CarForm, TicketForm, AccomadationForm
+from .models import Flight, Gallery, Trip, Car, Accomadation, Booking
+from .forms import (TripForm, FlightForm, CarForm, GalleryForm, BookingForm, GoupTripBookingForm, 
+    FlightBookingForm, CarHireBookingForm) 
+# CarForm, AccomadationForm
 from . import *
 from django.contrib import messages
-from .forms import PackageForm
+from datetime import datetime, timedelta
 
 
 # Create your views here.
-def group_packages(request):
-    packages = Package.objects.filter(type='group')
+def group_trips(request):
+    trips = Trip.objects.filter(type='group')
     context = {
-        'group_packages': packages,
+        'group_trips': trips,
     }
     return render(request, "packages-group.html", context)
 
 
-def custom_packages(request):
+def group_trip(request, pk):
+    trip = get_object_or_404(Trip, pk=pk)
+
+    booking_form = GoupTripBookingForm(request.POST or None, request.FILES or None, 
+        initial={"service": "trip", "trip": trip})
+    if booking_form.is_valid():
+        instance = booking_form.save(commit=False)
+        instance.trip.slots = instance.trip.slots - instance.slots
+        instance.trip.save()
+        instance.time_booked = datetime.now()
+        instance.save()       
+        messages.success(request, 'Group trip booked successfully')
+        return redirect('group_trips')
+    context = {
+        'trip': trip,
+        'group_trip_booking': booking_form,
+    }
+    return render(request, "packages-group-detail.html", context)
+
+
+def custom_trips(request):
     context = {}
     return render(request, "packages-custom.html", context)
 
@@ -24,23 +45,55 @@ def custom_packages(request):
 def flight_list(request):
     flights = Flight.objects.all()
     context = {"flights": flights}
-    return render(request, "flights.html", context)
+    return render(request, "flight-list.html", context)
 
 
-def ticketing(request):
-    context = {}
-    return render(request, "ticketing.html", context)
+def flight_detail(request, pk):
+    flight = get_object_or_404(Flight, pk=pk)
+    print(flight)
+
+    booking_form = FlightBookingForm(request.POST or None, request.FILES or None, 
+        initial={"service": "flight", "flight": flight })
+    if booking_form.is_valid():
+        instance = booking_form.save(commit=False)
+        instance.time_booked = datetime.now()
+        instance.save()       
+        messages.success(request, 'Flight booked successfully')
+        return redirect('flight_list')
+    context = {
+        'flight': flight,
+        'booking_form': booking_form,
+    }
+    return render(request, "flight-detail.html", context)
 
 
 def car_list(request):
     cars = Car.objects.all()
-    transport = Transport.objects.all()
+    car_hire = Car.objects.all()
     context = {"cars": cars}
-    return render(request, "cars.html", context)
+    return render(request, "car-list.html", context)
+
+
+def car_detail(request, pk):
+    car = get_object_or_404(Car, pk=pk)
+
+    booking_form = CarHireBookingForm(request.POST or None, request.FILES or None, 
+        initial={"service": "car hire", "car": car })
+    if booking_form.is_valid():
+        instance = booking_form.save(commit=False)
+        instance.time_booked = datetime.now()
+        instance.save()       
+        messages.success(request, 'Car hire registered successfully')
+        return redirect('car_list')
+    context = {
+        'car': car,
+        'booking_form': booking_form,
+    }
+    return render(request, "car-detail.html", context)
 
 
 def gallery(request):
-    pictures = Gallery.objects.all()
+    pictures = Gallery.objects.filter(category="gallery")
 
     picture_form = GalleryForm(request.POST or None, request.FILES or None)
     if picture_form.is_valid():
@@ -72,56 +125,77 @@ def contacts(request):
 # Admin
 def main(request):
     """Index page for admin panel."""
-    group_packages = Package.objects.filter(type="group").count()
-    custom_packages = Package.objects.filter(type="custom").count()
+    trips = Trip.objects.all() 
+    group_trips = trips.filter(type="group").count()
+    custom_trips = trips.filter(type="custom").count()
 
-    accom_budget = Accomadation.objects.filter(budget="budget").count()
-    accom_mid_range = Accomadation.objects.filter(budget="mid range").count()
-    accom_up_market = Accomadation.objects.filter(budget="up market").count()
+    accomodation = Accomadation.objects.all()
+    accom_budget = accomodation.filter(budget="budget").count()
+    accom_midrange = accomodation.filter(budget="mid range").count()
+    accom_upmarket = accomodation.filter(budget="up market").count()
 
-    trans_budget = Transport.objects.filter(budget="budget").count()
-    trans_mid_range = Transport.objects.filter(budget="mid range").count()
-    trans_up_market = Transport.objects.filter(budget="up market").count()
+    car_hires = Car.objects.all()
+    # carhire_town = car_hires.filter(trip="town service").count()
+    # carhire_upcountry = car_hires.filter(trip="upcountry").count()
 
-    trans_driver = Transport.objects.filter(driver="driver").count()
-    trans_self = Transport.objects.filter(driver="self").count()
+    bookings = Booking.objects.all()
+    oneway_tickets = bookings.filter(flight_type="one way").count()
+    return_tickets = bookings.filter(flight_type="return").count()
 
-    trans_town = Transport.objects.filter(driver="town service").count()
-    trans_upcountry = Transport.objects.filter(driver="upcountry").count()
+    carhire_driver = bookings.filter(driven_by="driver").count()
+    carhire_self = bookings.filter(driven_by="self").count()
+    
+    carhire_town = bookings.filter(carhire_trip="town service").count()
+    carhire_upcountry = bookings.filter(carhire_trip="upcountry").count()
 
-    one_way_tickets = Ticket.objects.filter(type="town service").count()
-    return_tickets = Ticket.objects.filter(type="upcountry").count()
+    latest_booking = bookings.latest('time_booked')
+    print(latest_booking)
 
+    # tomorrow = datetime.date.today() + timedelta(days=1)
+    # today = datetime.date.today()
+
+    # for bk in bookings:
+    #     bk_start = bk.start
+    #     if bk_start == today:
+    #         print("A booking starts today")
+    #         bk_today = "Today"
+    #     elif bk_start > today:
+    #         print("A booking starts tomorrow")
+    #         bk_tomoro = "tomoro"
+        
     context = {
-            "group_packages": group_packages,
-            "custom_packages": custom_packages,
+            "group_trips": group_trips,
+            "custom_trips": custom_trips,
             "accom_budget" : accom_budget,
-            "accom_mid_range": accom_mid_range,
-            "accom_up_market": accom_up_market,
-            "trans_budget" : trans_budget,
-            "trans_mid_range": trans_mid_range,
-            "trans_up_market": trans_up_market,
-            "trans_driver": trans_driver,
-            "trans_self": trans_self,
-            "trans_town": trans_town,
-            "trans_upcountry": trans_upcountry,
-            "one_way_tickets": one_way_tickets,
+            "accom_mid_range": accom_midrange,
+            "accom_up_market": accom_upmarket,
+            "carhire_driver": carhire_driver,
+            "carhire_self": carhire_self,
+            "carhire_town": carhire_town,
+            "carhire_upcountry": carhire_upcountry,
+            "oneway_tickets": oneway_tickets,
             "return_tickets": return_tickets,
+            # "bk_today": bk_today,
+            # "bk_tomoro": bk_tomoro
+            "latest_booking": latest_booking,
     }
     return render(request, "admin/main.html", context) 
 
 
 def packages(request):
-    packages = Package.objects.all()
+    trips = Trip.objects.all()
+    trip_count = trips.count()
+    if trip_count == 1:
+        messages.info(request, 'No trip slots left')
 
-    package_form = PackageForm(request.POST or None, request.FILES or None)
+    package_form = TripForm(request.POST or None, request.FILES or None)
     if package_form.is_valid():
         instance = package_form.save(commit=False)
         instance.save()                 
         messages.success(request, 'Package saved successfully')
         return redirect('packages')
     context = {
-        'packages': packages,
+        'packages': trips,
         'package_form': package_form,
     }
     return render(request, "admin/packages.html", context)
@@ -157,5 +231,24 @@ def cars(request):
         'car_form': car_form,
     }
     return render(request, "admin/cars.html", context)
+
+
+def bookings(request):
+    bookings = Booking.objects.all()
+
+    booking_form = CarForm(request.POST or None, request.FILES or None)
+    if booking_form.is_valid():
+        instance = booking_form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Booking saved successfully')
+        return redirect('bookings')
+    context = {
+        'bookings': bookings,
+        'booking_form': booking_form,
+    }
+    return render(request, "admin/bookings.html", context)
+
+
+
 
 
