@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.forms import ModelForm, DateInput
-from .models import Accomadation, Activity, Booking, Car, Driver, Flight, Gallery, Trip, PackageCategory, CarHire
+from .models import Accomadation, Activity, Booking, Car, Driver, Flight, Gallery, Trip, PackageCategory
 import datetime
 from django.forms import Form, ModelForm, DateField, widgets
 
@@ -14,8 +14,7 @@ class TripForm(forms.ModelForm):
     trip_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation at trip destination')
     pickup = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Pickup location'}))
     dropoff = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Drop off location'}))
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your first name'}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your last name'}))
+    full_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your full name'}))
     nationality = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your nationality'}))
     telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your phone number'}))
 
@@ -104,8 +103,7 @@ class BookingForm(forms.ModelForm):
 
 
 class GoupTripBookingForm(forms.ModelForm):
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your first name'}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your last name'}))
+    full_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your full name'}))
     email = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your email address'}))
     telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your telephone number eg +25677125478511'}))
     nationality = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your nationality'}))
@@ -127,8 +125,7 @@ class GoupTripBookingForm(forms.ModelForm):
 
 
 class FlightBookingForm(forms.ModelForm):
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your first name'}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your last name'}))
+    full_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your full name'}))
     email = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your email address'}))
     telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your telephone number eg +25677125478511'}))
     nationality = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your nationality'}))
@@ -148,42 +145,24 @@ class FlightBookingForm(forms.ModelForm):
         } 
 
 
-class CarBookingForm(forms.ModelForm):
-    car = forms.ModelChoiceField(queryset=Car.objects.all(), empty_label='Select car')
-    driver = forms.ModelChoiceField(queryset=Driver.objects.all(), empty_label='Select either one of our drivers or self')
-    pickup = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your pickup  location'}))
-    dropoff = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your drop off location'}))
-
-    def __init__(self, *args, **kwargs):
-        super(CarBookingForm, self).__init__(*args, **kwargs)
-        # self.fields['trip'].label = "Upload image (formats .png, .jpeg, jpg)"
-        # self.fields['trip'].disabled = True 
-        
-    class Meta:
-        model = CarHire
-        fields = '__all__'
-        exclude = ('id', 'driven_by')
-        widgets = {
-            'start': widgets.DateInput(attrs={'type': 'date'}),
-            'end': widgets.DateInput(attrs={'type': 'date'}),
-        }
-
 class CarHireBookingForm(forms.ModelForm):
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your first name'}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your last name'}))
+    full_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your full name'}))
     email = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your email address'}))
     telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your telephone number eg +25677125478511'}))
     nationality = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your nationality'}))
-    pickup = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter location we can pick you for the trip'}))
-    dropoff = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter a location we can drop you after trip'}))
 
     def __init__(self, *args, **kwargs):
         super(CarHireBookingForm, self).__init__(*args, **kwargs)
-        # self.fields['trip'].label = "Upload image (formats .png, .jpeg, jpg)"
-        # self.fields['trip'].disabled = True 
+        self.fields['start'].label = "Pickup date"
+        self.fields['end'].label = "Drop off date"
+        self.fields['carhire_trip'].label = "Area of car trip"
         # self.fields['service'].disabled = True 
         
     class Meta:
         model = Booking
         fields = '__all__'
-        exclude = ('flight', 'trip', 'flight_type', 'departure_date', 'slots', 'adults', 'children', 'infants')
+        exclude = ('flight', 'trip', 'flight_type', 'departure_date', 'pickup', 'dropoff',  'slots', 'adults', 'children', 'infants')
+        widgets = {
+            'start': widgets.DateInput(attrs={'type': 'date'}),
+            'end': widgets.DateInput(attrs={'type': 'date'}),
+        } 
