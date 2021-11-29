@@ -87,6 +87,8 @@ class Trip(models.Model):
     arrival_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="arrival_accom")
     trip_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="trip_accom")
 
+    # def depleted_slots:
+
     class Meta :
        ordering = ['-id']
 

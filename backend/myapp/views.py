@@ -183,7 +183,10 @@ def main(request):
 
 
 def packages(request):
-    packages = Trip.objects.all()
+    trips = Trip.objects.all()
+    trip_count = trips.count()
+    if trip_count == 1:
+        messages.info(request, 'No trip slots left')
 
     package_form = TripForm(request.POST or None, request.FILES or None)
     if package_form.is_valid():
@@ -192,7 +195,7 @@ def packages(request):
         messages.success(request, 'Package saved successfully')
         return redirect('packages')
     context = {
-        'packages': packages,
+        'packages': trips,
         'package_form': package_form,
     }
     return render(request, "admin/packages.html", context)
