@@ -1,7 +1,8 @@
 from django.db import models
 from django.db.models.fields.files import ImageField
 from django_countries.fields import CountryField
-
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 BUDGET = (
     ('budget', 'budget'),
@@ -12,6 +13,7 @@ class Accomadation(models.Model):
     """For both hotel and destination housing"""
     name = models.CharField(max_length=100)
     budget = models.CharField(max_length=100, choices=BUDGET)
+    available = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.name}"
@@ -56,18 +58,36 @@ class Car(models.Model):
     category = models.CharField(max_length=50, choices=CAR_CATEGORY)
     rating = models.FloatField(default=1.0)
     capacity = models.PositiveIntegerField(default=3)
+    available = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.make}"
 
 
+PERMIT_CLASSES = (
+    ('A', 'A - Motorcycles'),
+    ('B', 'B - Motorcars and dual-purpose motor vehicles(Passenger vehicles up to 7 people and Goods vehicles up to 3.5 tonnes)'),
+    ('CM', 'CM - Motorcars and dual-purpose motor vehicles'),
+    ('CH', 'CH - Heavy goods vehicles'),
+    ('DL', 'DL - Light omnibuses'),
+    ('DM', 'DM - Medium omnibuses'),
+    ('DH', 'DH - Heavy omnibuses'),
+    ('E', 'E - Combination of vehicles'),
+    ('F', 'F - Pedestrian-controlled vehicles'),
+    ('G', 'G - Engineering plant vehicle'),
+    ('H', 'G - Tractors'),
+    ('I', 'G - Boats'),
+)
 class Driver(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    user = models.ForeignKey(User, models.CASCADE)
+    full_name = models.CharField(max_length=50)
+    permit_class = models.CharField(max_length=100, default="DL")
+    permit = models.FileField(upload_to="permits")
     photo = models.ImageField(upload_to="cars")
+    verified = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.full_name}"
 
 
 PACKAGE_TYPES = (
@@ -87,7 +107,7 @@ class Trip(models.Model):
     # activities = models.CharField(max_length=200, choices=PACKAGE_TYPES)
     arrival_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="arrival_accom")
     trip_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="trip_accom")
-
+    available = models.BooleanField(default=True)
     # def depleted_slots:
 
     class Meta :
@@ -102,6 +122,7 @@ class Flight(models.Model):
     destination = models.CharField(max_length=50)
     price = models.PositiveIntegerField()
     image = models.ImageField(upload_to="flights")
+    available = models.BooleanField(default=True)
 
     class Meta :
        ordering = ['-id']
@@ -165,6 +186,7 @@ class Gallery(models.Model):
     picture = models.ImageField(upload_to="gallery")
     category = models.CharField(max_length=50, choices=IMAGE_CATEGORY, default='gallery')
     caption = models.CharField(max_length=100, null=True)
+    hidden = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.caption}"

@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Flight, Gallery, Trip, Car, Accomadation, Booking
+from .models import Flight, Gallery, Trip, Car, Accomadation, Booking, Driver
 from .forms import (TripForm, FlightForm, CarForm, GalleryForm, BookingForm, GoupTripBookingForm, 
     FlightBookingForm, CarHireBookingForm) 
 # CarForm, AccomadationForm
@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 
 # Create your views here.
 def group_trips(request):
-    trips = Trip.objects.filter(type='group')
+    trips = Trip.objects.filter(type='group', available=True)
     context = {
         'group_trips': trips,
     }
@@ -38,12 +38,15 @@ def group_trip(request, pk):
 
 
 def custom_trips(request):
-    context = {}
+    trips = Trip.objects.filter(type='custom', available=True)
+    context = {
+        'custom_trips': trips,
+    }
     return render(request, "packages-custom.html", context)
 
 
 def flight_list(request):
-    flights = Flight.objects.all()
+    flights = Flight.objects.filter(available=True)
     context = {"flights": flights}
     return render(request, "flight-list.html", context)
 
@@ -68,8 +71,7 @@ def flight_detail(request, pk):
 
 
 def car_list(request):
-    cars = Car.objects.all()
-    car_hire = Car.objects.all()
+    cars = Car.objects.filter(available=True)
     context = {"cars": cars}
     return render(request, "car-list.html", context)
 
@@ -93,7 +95,7 @@ def car_detail(request, pk):
 
 
 def gallery(request):
-    pictures = Gallery.objects.filter(category="gallery")
+    pictures = Gallery.objects.filter(category="gallery", hidden=False)
 
     picture_form = GalleryForm(request.POST or None, request.FILES or None)
     if picture_form.is_valid():
@@ -149,7 +151,6 @@ def main(request):
     carhire_upcountry = bookings.filter(carhire_trip="upcountry").count()
 
     latest_booking = bookings.latest('time_booked')
-    print(latest_booking)
 
     # tomorrow = datetime.date.today() + timedelta(days=1)
     # today = datetime.date.today()
@@ -182,11 +183,11 @@ def main(request):
     return render(request, "admin/main.html", context) 
 
 
-def packages(request):
+def trips(request):
     trips = Trip.objects.all()
-    trip_count = trips.count()
-    if trip_count == 1:
-        messages.info(request, 'No trip slots left')
+    # trip_count = trips.count()
+    # if trip_count == 0:
+    #     messages.info(request, 'No trip slots left')
 
     package_form = TripForm(request.POST or None, request.FILES or None)
     if package_form.is_valid():
@@ -198,7 +199,7 @@ def packages(request):
         'packages': trips,
         'package_form': package_form,
     }
-    return render(request, "admin/packages.html", context)
+    return render(request, "admin/trips.html", context)
 
 
 def flights(request):
@@ -249,6 +250,13 @@ def bookings(request):
     return render(request, "admin/bookings.html", context)
 
 
+
+def drivers(request):
+    drivers = Driver.objects.all()
+    context = {
+        'drivers': drivers,
+    }
+    return render(request, "admin/drivers.html", context)
 
 
 

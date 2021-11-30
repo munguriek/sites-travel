@@ -87,14 +87,31 @@
 									<table id="myTable" class="table table-bordered table-hover table-striped table-responsive">
 										<thead>
 											<tr>
-												<th class="text-center">Car Make</th>
-											
+												<th>Category</th>
+												<th >Car Make</th>
+												<th>Capacity</th>
+												<th>Rating</th>
+												<th>Availability</th>
+												<th>Options</th>
 											</tr>
 										</thead>
 										<tbody>
 											{% for car  in cars  %}
 											<tr>
-												<td>{{car.make}}</td>
+												<td>{{car.category}}</td>
+												<td>{{car.make |title }}</td>
+												<th>{{car.capacity}}</th>
+												<td>{{car.rating}}</td>
+												<td>
+													{% if car.available == True %}
+													<a href="#" class="btn btn-outline-danger btn-sm">Remove availability</a>
+													{% else %}
+													<a href="#" class="btn btn-outline-primary btn-sm">Make available</a>
+													{% endif %}
+												</td>
+												<td>
+													<a href="#" class="btn btn-outline-primary btn-sm">view</a>
+												</td>
 											</tr>
 											{% endfor %}
 										</tbody>

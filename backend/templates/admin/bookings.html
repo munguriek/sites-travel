@@ -96,6 +96,7 @@
 												<th >end</th>
 												<th>Booked by</th>
 												<th>Time Booked</th>
+												<th>Options</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -107,6 +108,9 @@
 												<td>{{booking.end}}</td>
 												<td>{{booking.full_name |title }}</td>
 												<td>{{booking.time_booked |timesince }}</td>
+												<td>
+													<a href="#" class="btn btn-outline-primary btn-sm">view</a>
+												</td>
 											</tr>
 											{% endfor %}
 										</tbody>

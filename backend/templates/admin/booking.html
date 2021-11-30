@@ -1,6 +1,7 @@
 {% extends 'base.html' %} 
 {% load static %} 
 {% load crispy_forms_tags %}
+{% load humanize %}
 {% block content %}
 
 <!-- hs Navigation End -->
@@ -11,7 +12,7 @@
 		<div class="row">
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
 				<div class="btc_tittle_left_heading">
-					<h1>Packages</h1>
+					<h1>Bookings</h1>
 				</div>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
@@ -22,7 +23,7 @@
 								<a href="{% url 'index' %}">Home</a>
 								<i class="fa fa-angle-right"></i>
 							</li>
-							<li>Packages</li>
+							<li>Bookings</li>
 						</ul>
 					</div>
 				</div>
@@ -52,18 +53,21 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="x_offer_car_heading_wrapper x_offer_car_tb_heading_wrapper float_left">
-											<h4>All Trips</h4>
-											<h3>Trips</h3>
+											<h4>All Bookings</h4>
+											<h3>Bookings</h3>
 											<!-- <p>Dashboard and Management console for Site Travel website</p> -->
 										</div>
 									</div>
 									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 full_width">
 									<!-- modal start-->
+									
+									{% comment %}
 									<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
-										Add Trip
+										Add flight
 									</button>
+									{% endcomment %}
 									<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-										<div class="modal-dialog modal-lg">
+										<div class="modal-dialog modal-dialog-centered modal-lg">
 										<div class="modal-content">
 											<div class="modal-header">
 											<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -74,57 +78,37 @@
 											<div class="modal-body">
 												<form method="post" enctype='multipart/form-data'>
 													{% csrf_token %}
-													{{ package_form |crispy }}
+													{{ flight_form |crispy }}
 													<div class="float-right">
 														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 														<button type="submit" class="btn btn-primary">Save</button>
 													</div>
 												</form>
 											</div>
-											<!-- <div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="button" class="btn btn-primary">Save changes</button>
-											</div> -->
 										</div>
 										</div>
 									</div>
 									<table id="myTable" class="table table-bordered table-hover table-striped table-responsive">
 										<thead>
 											<tr>
-												<th >Package Type</th>
-												<th >Category</th>
-												<th >Destination</th>
-												<th >Price</th>
-												<th >Slots left</th>
-												<th >Start date</th>
+												<th >Service</th>
+												<th >start</th>
+												<th >end</th>
 												<th>Booked by</th>
+												<th>Time Booked</th>
 											</tr>
 										</thead>
 										<tbody>
-											{% for package  in packages  %}
+											
+											{% for booking  in bookings  %}
 											<tr>
-												<td>{{package.type}}</td>
-												<td>{{package.category}}</td>
-												<td>{{package.destination}}</td>
-												<td>$ {{package.price}}</td>
-												<td>{{package.slots}}</td>
-												<td>{{package.start}}</td>
-												<td>{{package.first_name}} {{package.last_name}}</td>
+												<td>{{booking.service |title }}</td>
+												<td>{{booking.end}}</td>
+												<td>{{booking.end}}</td>
+												<td>{{booking.full_name |title }}</td>
+												<td>{{booking.time_booked |timesince }}</td>
 											</tr>
 											{% endfor %}
-
-											<!-- start = models.DateField()
-											end = models.DateField()
-											activities = models.CharField(max_length=200, choices=PACKAGE_TYPES)
-											arrival_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="arrival_accom")
-											trip_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="trip_accom")
-											pickup = models.CharField(max_length=100)
-											dropoff = models.CharField(max_length=100)
-											first_name = models.CharField(max_length=100)
-											last_name = models.CharField(max_length=100)
-											nationality = models.CharField(max_length=100)
-											telephone = models.CharField(max_length=20) -->
-												
 										</tbody>
 										</table>
 									</div>
