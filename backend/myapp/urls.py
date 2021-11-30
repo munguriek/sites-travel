@@ -21,6 +21,8 @@ urlpatterns = [
 
     path('main', views.main, name='main'),
     path('trips', views.trips, name='trips'),
+    path('trip/<str:pk>', views.trip, name='trip'),
+
     path('flights', views.flights, name='flights'),
     path('cars', views.cars, name='cars'),
     path('bookings', views.bookings, name='bookings'),

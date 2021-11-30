@@ -201,6 +201,21 @@ def trips(request):
     }
     return render(request, "admin/trips.html", context)
 
+def trip(request, pk):
+    trip = get_object_or_404(Trip, pk=pk)
+    update_trip = TripForm(request.POST or None, request.FILES or None, instance=trip)
+    if update_trip.is_valid():
+        instance = update_trip.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Trip updated successfully')
+        return redirect('trip', trip.id)
+    context = {
+        'packages': trips,
+        'update_trip': update_trip,
+    }
+    return render(request, "admin/trips.html", context)
+
+
 
 def flights(request):
     flights = Flight.objects.all()
