@@ -63,11 +63,62 @@
 						</div>
 						<div class="btc_team_img_bot_cont_wrapper">
 							<h4><a href="#"> {{car.make}}</a></h4>
-							<div class="x_car_offer_starts float_left">	<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star-o"></i>
-								<i class="fa fa-star-o"></i>
+							<div class="x_car_offer_starts float_left">	
+								{% if car.rating == 1.0 %}
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-o"></i>
+									<i class="fa fa-star-o"></i>
+									<i class="fa fa-star-o"></i>
+									<i class="fa fa-star-o"></i>
+								{% elif car.rating == 1.5 %}
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-half-alt"></i>									
+									<i class="fa fa-star-o"></i>
+									<i class="fa fa-star-o"></i>
+									<i class="fa fa-star-o"></i>
+								{% elif car.rating == 2.0 %}
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-o"></i>
+									<i class="fa fa-star-o"></i>
+									<i class="fa fa-star-o"></i>
+								{% elif car.rating == 2.5 %}
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-half-alt"></i>
+									<i class="fa fa-star-o"></i>
+									<i class="fa fa-star-o"></i>
+								{% elif car.rating == 3.0 %}
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-o"></i>
+									<i class="fa fa-star-o"></i>
+								{% elif car.rating == 3.5 %}
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-half-alt"></i>
+									<i class="fa fa-star-o"></i>
+								{% elif car.rating == 4.0 %}
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-o"></i>
+								{% elif car.rating == 4.5 %}
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-half-alt"></i>
+								{% elif car.rating == 5.0 %}
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+								{% endif %}
 							</div>
 							<a href="{% url 'car_detail' car.id %}" class="btn btn-outline-dark btn-sm mt-2">Book</a>
 						</div>

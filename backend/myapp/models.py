@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.fields.files import ImageField
+from django_countries.fields import CountryField
 
 
 BUDGET = (
@@ -53,7 +54,7 @@ class Car(models.Model):
     make = models.CharField(max_length=100)
     image = models.ImageField(upload_to="cars")
     category = models.CharField(max_length=50, choices=CAR_CATEGORY)
-    rating = models.PositiveIntegerField(default=0)
+    rating = models.FloatField(default=1.0)
     capacity = models.PositiveIntegerField(default=3)
 
     def __str__(self):
@@ -135,7 +136,7 @@ class Booking(models.Model):
     departure_date = models.DateField(max_length=100, null=True) # For flight
     full_name = models.CharField(max_length=100)
     email = models.EmailField()
-    nationality = models.CharField(max_length=100)
+    country = CountryField(blank_label='select country' )
     telephone = models.CharField(max_length=20)
     pickup = models.CharField(max_length=100)
     dropoff = models.CharField(max_length=100)
