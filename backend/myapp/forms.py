@@ -5,6 +5,7 @@ from django.forms import ModelForm, DateInput
 from .models import Accomadation, Activity, Booking, Car, Driver, Flight, Gallery, Trip, PackageCategory
 import datetime
 from django.forms import Form, ModelForm, DateField, widgets
+from django_countries.widgets import CountrySelectWidget
 
 
 class TripForm(forms.ModelForm):
@@ -139,9 +140,10 @@ class FlightBookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = '__all__'
-        exclude = ('time_booked', 'trip', 'car_hire', 'pickup', 'dropoff', )
+        exclude = ('time_booked', 'car', 'start', 'end', 'trip', 'car_hire', 'pickup', 'dropoff', 'driven_by', 'carhire_trip')
         widgets = {
             'departure_date': widgets.DateInput(attrs={'type': 'date'}),
+            'country': CountrySelectWidget()
         } 
 
 
@@ -149,7 +151,6 @@ class CarHireBookingForm(forms.ModelForm):
     full_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your full name'}))
     email = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your email address'}))
     telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your telephone number eg +25677125478511'}))
-    nationality = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your nationality'}))
 
     def __init__(self, *args, **kwargs):
         super(CarHireBookingForm, self).__init__(*args, **kwargs)

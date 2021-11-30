@@ -20,9 +20,12 @@ urlpatterns = [
     path('contacts', views.contacts, name='contacts'),
 
     path('main', views.main, name='main'),
-    path('packages', views.packages, name='packages'),
+    path('trips', views.trips, name='trips'),
+    path('trip/<str:pk>', views.trip, name='trip'),
+
     path('flights', views.flights, name='flights'),
     path('cars', views.cars, name='cars'),
     path('bookings', views.bookings, name='bookings'),
+    path('drivers', views.drivers, name='drivers'),
 
 ]

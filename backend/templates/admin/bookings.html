@@ -43,6 +43,11 @@
 			<div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
 				<div class="x_carbooking_right_section_wrapper float_left">
 					<div class="row">
+						<div class="col-12 col-md-8 offset-md-3">
+							<p class="text-center">
+								{% include 'includes/messages.html' %}
+							</p>
+						</div>
 						<div class="x_services_title_main_wrapper float_left padding_tb_10">
 							<div class="container">
 								<div class="row">
@@ -91,6 +96,7 @@
 												<th >end</th>
 												<th>Booked by</th>
 												<th>Time Booked</th>
+												<th>Options</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -102,6 +108,9 @@
 												<td>{{booking.end}}</td>
 												<td>{{booking.full_name |title }}</td>
 												<td>{{booking.time_booked |timesince }}</td>
+												<td>
+													<a href="#" class="btn btn-outline-primary btn-sm">view</a>
+												</td>
 											</tr>
 											{% endfor %}
 										</tbody>
